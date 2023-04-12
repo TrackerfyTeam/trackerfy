@@ -19,11 +19,20 @@ body {
 }
 
 .header {
-    padding: 2% 0% 0% 15%;
+    padding: 2% 10% 2% 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logos {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 .header__img {
-    width: 30%;
+    width: 10%;
 }
 
 .header__menu {
@@ -31,12 +40,31 @@ body {
     gap: 80px;
 }
 
-.header__menu__link {
+.header__menu__name {
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    font-size: 2rem;
+}
+
+.header__menu a {
     color: var(--primary-color);
     text-decoration: none;
     font-family: var(--font-montserrat);
     display: flex;
-    justify-content: space-between;
     font-size: 1.5rem;
-    align-items: center;
+}
+
+.header__menu a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+    padding: 24px;
+    text-align: center;
+    font-family: var(--font-montserrat);
+    font-size: 1.5rem;
+    font-weight: 400;
 }
