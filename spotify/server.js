@@ -21,8 +21,8 @@ const spotifyApi = new SpotifyWebApi({
 
 spotifyApi.clientCredentialsGrant().then(
     function(data) {
-      console.log('Token de acesso gerado: ' + data.body["0Fh0l1RyTa8pqeXDPYWsS6?si=2a519540764241df"]);
-      spotifyApi.setAccessToken(data.body["0Fh0l1RyTa8pqeXDPYWsS6?si=2a519540764241df"]);
+      console.log('Token de acesso gerado: ' + data.body[""]);
+      spotifyApi.setAccessToken(data.body[""]);
     },
     function(err) {
       console.log('Algo deu errado ao gerar o token de acesso!', err);
