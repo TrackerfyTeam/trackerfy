@@ -67,13 +67,19 @@ body {
 }
 
 .presentation {
+    padding: 5% 15%;
     color: var(--primary-color);
     font-family: var(--font-montserrat);
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
 }
 
 .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     color: var(--background-color);
     background-color: var(--primary-color);
     padding: 24px;
