@@ -47,6 +47,13 @@ body {
     font-size: 2rem;
 }
 
+.header__text {
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    justify-content: center;
+}
+
 .header__menu a {
     color: var(--primary-color);
     text-decoration: none;
@@ -57,6 +64,13 @@ body {
 
 .header__menu a:hover {
     text-decoration: underline;
+}
+
+.presentation {
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    justify-content: center;
 }
 
 .footer {
