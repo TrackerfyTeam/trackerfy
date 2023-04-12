@@ -9,4 +9,34 @@
     --primary-color: #1DB954;
     --secundary-color: ;
     --background-color: black;
+
+    --font-montserrat: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    box-sizing: border-box;
+}
+
+.header {
+    padding: 2% 0% 0% 15%;
+}
+
+.header__img {
+    width: 30%;
+}
+
+.header__menu {
+    display: flex;
+    gap: 80px;
+}
+
+.header__menu__link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-family: var(--font-montserrat);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    align-items: center;
 }
