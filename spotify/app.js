@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const functions = require('./src/js/modules.js');
-const querystring = require('querystring');
 const SpotifyWebApi = require('spotify-web-api-node');
 
 require('dotenv').config();
