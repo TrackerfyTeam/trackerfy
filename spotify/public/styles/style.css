@@ -82,9 +82,13 @@ body {
     width: 100%;
     color: var(--background-color);
     background-color: var(--primary-color);
-    padding: 24px;
+    padding-right: 100px;
     text-align: center;
     font-family: var(--font-montserrat);
     font-size: 1.5rem;
     font-weight: 400;
+}
+
+.footer p {
+    padding: 24px;
 }
