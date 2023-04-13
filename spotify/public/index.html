@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../styles/login.css">
     <title>Trackertify</title>
 </head>
 
@@ -15,21 +15,16 @@
             <img class="header__img" alt="Spotify Logo" src="../assets/spotify_logo.png">
             <h1 class="header__menu__name">Trackertify</h1>
         </div>
-        <div class="header__text">
-            <h1>Most played songs: </h1>
-        </div>
-        <div class="header__nav">
-            <nav class="header__menu">
-                <a href="index.html">Year</a>
-                <a href="month.html">Month</a>
-                <a href="week.html">Week</a>
-                <a href="today.html">Today</a>
-            </nav>
-        </div>
     </header>
     <main class="presentation">
-        <h2>The top 20 songs most played this year are</h2>
-        <h3>This part of the page will have the top 20 songs listed according to the number of plays that year.</h3>
+        <h2>See your Spotify stats!</h2>
+        <form class="buttom">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Pasword:</label><br>
+            <input type="password" id="password" name="password">
+            <button type="submit">Enjoy!</button>
+        </form>
     </main>
     <footer class="footer">
         <p>Trackertify</p>
