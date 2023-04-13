@@ -47,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5rem;
 }
 
@@ -66,7 +67,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    border: 5px solid var(--primary-color);
+    border: 3px solid var(--primary-color);
 }
 
 input[type="password"] {
@@ -79,7 +80,26 @@ input[type="password"] {
 
 input[type="password"]:focus {
     outline: none;
-    border: 5px solid var(--primary-color);
+    border: 3px solid var(--primary-color);
+}
+
+button {
+    margin-top: 5%;
+    border-radius: 16px;
+    padding: 5%;
+    background-color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    font-size: large;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+button:hover {
+    margin-top: 5%;
+    background-color: var(--background-color);
+    border-color: var(--primary-color);
+    border-width: 4px;
+    color: white
 }
 
 .footer {
@@ -88,9 +108,13 @@ input[type="password"]:focus {
     width: 100%;
     color: var(--background-color);
     background-color: var(--primary-color);
-    padding: 24px;
     text-align: center;
+    justify-content: center;
     font-family: var(--font-montserrat);
     font-size: 1.5rem;
     font-weight: 400;
+}
+
+.footer p {
+    padding: 24px;
 }
