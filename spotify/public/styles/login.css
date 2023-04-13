@@ -7,6 +7,7 @@
 
 :root {
     --primary-color: #1DB954;
+    --secondary-color: white;
     --background-color: black;
 
     --font-montserrat: 'Montserrat', sans-serif;
@@ -64,7 +65,7 @@ input[type="text"] {
     box-sizing: border-box;
     font-size: large;
     font-family: var(--font-montserrat);
-    border: 3px solid white;
+    border: 3px solid var(--secondary-color);
 
 }
 
@@ -79,8 +80,7 @@ input[type="password"] {
     margin: 8px 0;
     box-sizing: border-box;
     font-size: large;
-    border: 3px solid white;
-
+    border: 3px solid var(--secondary-color);
 }
 
 input[type="password"]:focus {
@@ -91,9 +91,10 @@ input[type="password"]:focus {
 button {
     margin-top: 5%;
     border-radius: 16px;
-    padding: 5%;
     background-color: var(--primary-color);
     font-family: var(--font-montserrat);
+    border-width: 4px;
+    border-color: var(--primary-color);
     font-size: large;
     cursor: pointer;
     transition: .3s ease-in-out;
@@ -104,7 +105,7 @@ button:hover {
     background-color: var(--background-color);
     border-color: var(--primary-color);
     border-width: 4px;
-    color: white
+    color: var(--secondary-color)
 }
 
 .footer {
