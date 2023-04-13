@@ -62,6 +62,9 @@ input[type="text"] {
     padding: 15px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    font-size: large;
+    font-family: var(--font-montserrat);
+    border: 3px solid white;
 
 }
 
@@ -75,6 +78,8 @@ input[type="password"] {
     padding: 15px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    font-size: large;
+    border: 3px solid white;
 
 }
 
