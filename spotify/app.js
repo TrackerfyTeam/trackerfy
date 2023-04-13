@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
+// const axios = require('axios');
 
 require('dotenv').config();
 const clientId = process.env.CLIENT_ID;
@@ -14,7 +15,7 @@ const spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:3000/callback'
 });
 
-router.get('/', (req, res, next) => {
+router.get('/login', (req, res, next) => {
     res.redirect(spotifyApi.createAuthorizeURL([
         'ugc-image-upload',
         'user-read-playback-state',
@@ -54,6 +55,7 @@ router.get('/callback', async (req, res, next) => {
     });
 });
 
+app.use(express.static('public'));
 app.use('/', router);
 app.listen(3000, () => {
     console.log('aplication running!');
