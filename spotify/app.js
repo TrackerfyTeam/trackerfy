@@ -14,7 +14,7 @@ const spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:3000/callback'
 });
 
-router.get('/', (req, res, next) => {
+router.get('/login', (req, res, next) => {
     res.redirect(spotifyApi.createAuthorizeURL([
         'ugc-image-upload',
         'user-read-playback-state',
