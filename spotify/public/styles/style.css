@@ -84,6 +84,7 @@ body {
     background-color: var(--primary-color);
     padding-right: 100px;
     text-align: center;
+    justify-content: center;
     font-family: var(--font-montserrat);
     font-size: 1.5rem;
     font-weight: 400;
