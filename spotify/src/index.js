@@ -33,3 +33,4 @@ loginForm.addEventListener("submit", (event) => {
       console.error("Erro ao obter token de acesso:", error);
     });
 });
+

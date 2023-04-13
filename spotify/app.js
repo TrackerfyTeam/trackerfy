@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
-// const axios = require('axios');
 
 require('dotenv').config();
 const clientId = process.env.CLIENT_ID;
