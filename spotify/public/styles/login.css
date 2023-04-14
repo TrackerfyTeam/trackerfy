@@ -89,6 +89,7 @@ input[type="password"]:focus {
 }
 
 button {
+    padding: 5%;
     margin-top: 5%;
     border-radius: 16px;
     background-color: var(--primary-color);
