@@ -24,50 +24,12 @@
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password">
             <button type="submit" id="submit-button">Enjoy!</button>
+            <a href=" http://localhost:3000/login">Login</a>
         </form>
     </main>
     <footer class="footer">
         <p>Trackerfy</p>
     </footer>
-
-    <script>
-        const CLIENT_ID = 'c4a70cb602e745e0bab72dd3ff52d7b5';
-        const CLIENT_SECRET = 'b92dd100d00f4b659a1100aaf330672b';
-        const TOKEN_API_URL = "https://accounts.spotify.com/api/token";
-
-        const loginForm = document.getElementById("login-form");
-        loginForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // evitar que a página seja recarregada
-
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const basicAuth = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`); // codificar as credenciais em Base64
-
-        fetch(TOKEN_API_URL, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: `Basic ${basicAuth}`,
-            },
-            body: new URLSearchParams({
-            grant_type: "password",
-            username: username,
-            password: password,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-            const accessToken = data.access_token;
-            // armazenar o token de acesso em uma variável ou em um cookie
-            console.log(`Token de acesso: ${accessToken}`);
-            })
-            .catch((error) => {
-            console.error("Erro ao obter token de acesso:", error);
-            });
-        });
-    </script>
-
-    <!-- <script src="../src/index.js"></script> -->
 </body>
 
 </html>

@@ -55,6 +55,11 @@ router.get('/callback', async (req, res, next) => {
 });
 
 app.use(express.static('public'));
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+})
+
+
 app.use('/', router);
 app.listen(3000, () => {
     console.log('aplication running!');
