@@ -6,6 +6,7 @@ app.use(express.json({limit: "1mb"}));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+// const { setData } = require('./src/dataController')
 const Datastore = require('nedb');
 const database = new Datastore('database.db');
 database.loadDatabase();
@@ -22,7 +23,11 @@ app.get('/', (req, res) => {
 
 app.get('/callback', (req, res) => {
     database.insert({ "code": req.query.code})
-    res.render('year')
+    res.render('year');
+})
+
+app.post('/callback', (req, res) => {
+
 })
 
 app.listen(3000, () => {
