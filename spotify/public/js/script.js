@@ -1,3 +1,5 @@
+const SpotifyWebApi = require("spotify-web-api-node");
+
 const button = document.querySelector('button')
 
 data = {
@@ -33,4 +35,4 @@ function login() {
 
 button.addEventListener('click', (e) => {
     login();
-})
+});
