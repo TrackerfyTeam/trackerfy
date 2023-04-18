@@ -23,7 +23,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('login')
+    res.render('login');
 })
 
 app.get('/callback', async (req, res) => {
@@ -36,19 +36,18 @@ app.get('/callback', async (req, res) => {
         
         spotifyApi.getPlaylist('37i9dQZEVXbMDoHDwVN2tF')
             .then(function(data) {
-                const dataejs = { body: JSON.stringify(data.body.tracks.items[0].track.album.name)}
+                const dataejs = { body: JSON.stringify(data.body.tracks.items[6].track.artists[0].name)}
                 res.render('year', { dataejs });
-                console.log(data.body.tracks.items[0].track.album.name);
+                console.log(data.body.tracks.items[6].track.artists[0].name);
             }, function(err) {
                 console.log('Something went wrong!', err);
             });
         
     } else {
         spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
-            localStorage.setItem('acess_token', JSON.stringify(response))
+            localStorage.setItem('acess_token', JSON.stringify(response));
         });
     }
-
 });
 
 app.listen(3000, () => {

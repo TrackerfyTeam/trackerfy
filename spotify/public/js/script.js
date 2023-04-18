@@ -1,6 +1,4 @@
-const SpotifyWebApi = require("spotify-web-api-node");
-
-const button = document.querySelector('button')
+const button = document.querySelector('button');
 
 data = {
     clientID: 'c4a70cb602e745e0bab72dd3ff52d7b5',
