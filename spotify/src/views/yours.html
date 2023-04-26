@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="/spotify/public/styles/style.css">
+    <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <title>Trackerfy</title>
 </head>
 
 <body>
     <header class="header">
         <div class="header__logos">
-            <img class="header__img" alt="Spotify Logo" src="../assets/spotify_logo.png">
+            <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
             <h1 class="header__menu__name">Trackerfy</h1>
         </div>
         <div class="header__text">
@@ -20,23 +21,18 @@
         </div>
         <div class="header__nav">
             <nav class="header__menu">
-                <a href="http://localhost:3000/month">Month</a>
-                <a href="http://localhost:3000/week">Week</a>
-                <a href="http://localhost:3000/today">Today</a>
-                <a href="http://localhost:3000/yours">Yours</a>
+                <a href="./year.html">Years</a>
+                <a href="./today.html">Today</a>
             </nav>
         </div>
     </header>
     <main class="presentation">
-        <h2>The top 20 songs most played this year are</h2>
+        <h2>Yours top 20 songs most played are</h2>
         <h3>This part of the page will have the top 20 songs listed according to the number of plays that year.</h3>
-        <div> TESTE:  <%= dataejs.body %></div>
     </main>
     <footer class="footer">
         <p>Trackerfy</p>
     </footer>
-
-    <script src="index.js"></script>
 </body>
 
 </html>
