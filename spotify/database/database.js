@@ -1,26 +1,26 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const con = mysql.createConnection({
-    host: "localhost",
+const connection = mysql.createConnection({
+    host: "127.0.0.1",
     user: "root",
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.NAME
+    database: process.env.DATABASE_NAME
 });
-  
-function conne(x){
-    con.connect((err)=>{
+
+function getPlaylistId(x){
+    connection.connect((err)=>{
       if (err) throw err;
       let sql = `SELECT link FROM links WHERE id = ${x}`;
-      con.query(sql, function(err, res) {
+      connection.query(sql, function(err, res) {
           if (err) throw err;
           console.log(res);
       })     
     })
 }
 
-function insert(y){
-    con.connect((err)=>{
+function insertData(y){
+    connection.connect((err)=>{
         if(err) throw err;
         let sql2 = `INSERT INTO access_token(access_token) values('${y}')`
         con.query( sql2, function(err, res){
@@ -29,8 +29,8 @@ function insert(y){
     })
 }
 
-function deleted(z){
-    con.connect((err)=>{
+function deleteData(z){
+    connection.connect((err)=>{
         if(err) throw err;
         let sql3 = `DELETE FROM access_token WHERE access_token = '${z}'`
         con.query(sql3,function(err,res){
@@ -39,4 +39,4 @@ function deleted(z){
     })
 }
 
-module.exports = {conne, insert, deleted}
+module.exports = {insertData, deleteData, getPlaylistId}

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+const methods = require('./database/database');
 const LocalStorage = require('node-localstorage').LocalStorage;
 const localStorage = new LocalStorage('./scratch');
 
@@ -44,6 +44,7 @@ app.get('/callback', async (req, res) => {
     } else {
         spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
             localStorage.setItem('acess_token', JSON.stringify(response));
+            
         });
     }
 });
