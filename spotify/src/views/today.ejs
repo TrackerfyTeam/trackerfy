@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="/spotify/public/styles/style.css">
+    <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <title>Trackerfy</title>
 </head>
 
 <body>
     <header class="header">
         <div class="header__logos">
-            <img class="header__img" alt="Spotify Logo" src="../assets/spotify_logo.png">
+            <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
             <h1 class="header__menu__name">Trackerfy</h1>
         </div>
         <div class="header__text">
@@ -20,9 +21,21 @@
         </div>
         <div class="header__nav">
             <nav class="header__menu">
-                <a href="./year.html">Year</a>
-                <a href="./month.html">Month</a>
-                <a href="./week.html">Week</a>
+                <ul class="header__menu__dropdown">
+                    <li class="header__menu__dropdown__item">
+                        <a href="" class="header__menu__dropdown__item__years">Years</a>
+                        <ul class="header__menu__dropdown__item__years__submenu">
+                            <li class="header__menu__dropdown__item__years__submenu__item">
+                                <a href="" class="seventy">1970</a>
+                                <a href="" class="eighty">1980</a>
+                                <a href="" class="ninety">1990</a>
+                                <a href="" class="twenty">2000</a>
+                                <a href="" class="twentyten">2010</a>
+                                <a href="" class="twentytwenty">2020</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <a href="./yours.html">Yours</a>
             </nav>
         </div>

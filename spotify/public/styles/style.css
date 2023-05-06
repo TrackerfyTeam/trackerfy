@@ -22,7 +22,7 @@ body {
     padding: 2% 10% 2% 10%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
 .header__logos {
@@ -37,7 +37,7 @@ body {
 
 .header__menu {
     display: flex;
-    gap: 80px;
+    gap: 5rem;
 }
 
 .header__menu__name {
@@ -64,6 +64,21 @@ body {
 
 .header__menu a:hover {
     text-decoration: underline;
+}
+
+.header__menu__dropdown__item__years{
+    justify-content: center;
+}
+
+.header__menu__dropdown__item__years__submenu a{
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; 
+}
+
+.header__menu__dropdown__item:hover .header__menu__dropdown__item__years__submenu a{
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
 .presentation {
