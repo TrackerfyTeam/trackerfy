@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const path = require('path');
 const LocalStorage = require('node-localstorage').LocalStorage;
 const localStorage = new LocalStorage('./scratch');
 
@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
-    
     let access_token_str = localStorage.getItem('acess_token');
     if (access_token_str) {
         const access_token = JSON.parse(access_token_str).body.access_token
