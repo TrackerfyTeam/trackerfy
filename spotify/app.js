@@ -42,7 +42,6 @@ app.get('/callback', async (req, res) => {
             }, function(err) {
                 console.log('Something went wrong!', err);
             });
-        
     } else {
         spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
             localStorage.setItem('acess_token', JSON.stringify(response));
