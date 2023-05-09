@@ -23,7 +23,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    methods.insertData('inseri uma parada aqui')
+    methods.insertData('SERASEFOI??')
     res.render('login');
 })
 

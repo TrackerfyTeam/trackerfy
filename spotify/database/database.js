@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     database: process.env.DATABASE_NAME,
     connectTimeout: 5000,
     ssl: {
-        ca: fs.readFileSync('/Users/CycleWs/Desktop/DigiCertGlobalRootCA.crt.pem')
+        rejectUnauthorized: false
       }
 });
 
