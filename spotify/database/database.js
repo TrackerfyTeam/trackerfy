@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
 require('dotenv').config();
-
 const connection = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME
+    database: process.env.DATABASE_NAME,
+    connectTimeout: 5000
 });
 
 function getPlaylistId(x){
@@ -22,7 +22,7 @@ function getPlaylistId(x){
 function insertData(y){
     connection.connect((err)=>{
         if(err) throw err;
-        let sql2 = `INSERT INTO access_token(access_token) values('${y}')`
+        let sql2 = `INSERT INTO accesstokendb(actk) VALUES ("${y}");`
         con.query( sql2, function(err, res){
             if(err) throw err;
         })
