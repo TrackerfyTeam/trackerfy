@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
-const fs = require('fs');
 require('dotenv').config();
+
 const connection = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
@@ -9,13 +9,13 @@ const connection = mysql.createConnection({
     connectTimeout: 5000,
     ssl: {
         rejectUnauthorized: false
-      }
+    }
 });
 
 function getPlaylistId(x){
     connection.connect((err)=>{
       if (err) throw err;
-      let sql = `SELECT link FROM links WHERE id = ${x}`;
+      let sql = `SELECT idLink FROM idLink WHERE ano = ${x}`;
       connection.query(sql, function(err, res) {
           if (err) throw err;
           console.log(res);
@@ -23,24 +23,34 @@ function getPlaylistId(x){
     })
 }
 
-function insertData(y){
+function getAcessToken(y) {
     connection.connect((err)=>{
         if(err) throw err;
-        let sql2 = `INSERT INTO accesstokendb(actk) VALUES ("${y}");`
+        let sql2 = `SELECT actk FROM accesstokendb WHERE id = ${y}`;
         connection.query( sql2, function(err, res){
             if(err) throw err;
         })
     })
 }
 
-function deleteData(z){
+function insertData(actk, id){
     connection.connect((err)=>{
         if(err) throw err;
-        let sql3 = `DELETE FROM access_token WHERE access_token = '${z}'`
+        let sql2 = `INSERT INTO accesstokendb(actk, id) VALUES ("${actk}", ${id});`
+        connection.query( sql2, function(err, res){
+            if(err) throw err;
+        })
+    })
+}
+
+function deleteData(w){
+    connection.connect((err)=>{
+        if(err) throw err;
+        let sql3 = `DELETE FROM access_token WHERE access_token = '${w}'`
         connection.query(sql3,function(err,res){
             if(err) throw err;
         })
     })
 }
 
-module.exports = {insertData, deleteData, getPlaylistId}
+module.exports = {insertData, deleteData, getPlaylistId, getAcessToken}

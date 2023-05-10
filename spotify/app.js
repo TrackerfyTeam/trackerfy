@@ -23,31 +23,42 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    methods.insertData('SERASEFOI??')
+    // methods.getPlaylistId(2010); 
     res.render('login');
 })
 
 app.get('/callback', async (req, res) => {
-    let access_token_str = localStorage.getItem('acess_token');
-    if (access_token_str) {
-        const access_token = JSON.parse(access_token_str).body.access_token
+    // spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
+    //     console.log(response);
+    // });
+    
+    console.log(methods.getAcessToken(1));
+    // if (methods.getAcessToken(1)) {
+    //     console.log('JA TEM');
+    // } else {
+    //     console.log('NAO TEM');
+    // }
+
+    // if (access_token_str) {
+    //     console.log(`PEGUEI O ACESS TOKEN AQUI OH: ${access_token_str}`);
+    //     res.render('year');
+    //     // spotifyApi.setAccessToken(access_token);
         
-        spotifyApi.setAccessToken(access_token);
-        
-        spotifyApi.getPlaylist('37i9dQZEVXbMDoHDwVN2tF')
-            .then(function(data) {
-                const dataejs = { body: JSON.stringify(data.body.tracks.items[6].track.artists[0].name)}
-                res.render('year', { dataejs });
-                console.log(data.body.tracks.items[6].track.artists[0].name);
-            }, function(err) {
-                console.log('Something went wrong!', err);
-            });
-    } else {
-        spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
-            localStorage.setItem('acess_token', JSON.stringify(response));
-            
-        });
-    }
+    //     // spotifyApi.getPlaylist('37i9dQZEVXbMDoHDwVN2tF')
+    //     //     .then(function(data) {
+    //     //         const dataejs = { body: JSON.stringify(data.body.tracks.items[6].track.artists[0].name)}
+    //     //         res.render('year', { dataejs });
+    //     //         console.log(data.body.tracks.items[6].track.artists[0].name);
+    //     //     }, function(err) {
+    //     //         console.log('Something went wrong!', err);
+    //     //     });
+    // } else {
+    //     console.log(`INSERI O ACESS TOKEN`);
+    //     spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
+    //         methods.insertData("teste", 1);
+    //     });
+    //     res.render('year');
+    // }
 });
 
 app.listen(3000, () => {
