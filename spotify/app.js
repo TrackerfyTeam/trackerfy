@@ -17,17 +17,19 @@ app.get('/', (req, res) => {
 app.get('/callback', async (req, res) => {
     res.render('playlists');
 
-
     await spotifyApi.getToken(req.query.code);
-
-    const usuario = await spotifyApi.getTopUsuario();
-    console.log(usuario);
-
-    // const dbresponse = await db.getData(1);
-
-
 });
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
     console.log('aplication running!');
 });
+
+server;
+
+async function handleServerClose() {
+    await db.deleteData(1);
+    process.exit(0);
+  }
+  
+  // Evento 'SIGINT' do processo
+  process.on('SIGINT', handleServerClose);

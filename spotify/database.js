@@ -42,4 +42,10 @@ async function updateData(access_token, expires_in, id) {
     return await conn.query(sql, values);
 }
 
-module.exports = {insertData, getData, updateData}
+async function deleteData(id) {
+    const conn = await connect();
+    const sql = 'DELETE FROM accesstokendb where id=?;'
+    return await conn.query(sql, id);
+}
+
+module.exports = {insertData, getData, updateData, deleteData}

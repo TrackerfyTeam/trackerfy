@@ -8,7 +8,8 @@ const client_secret = process.env.CLIENT_SECRET;
 let access_token;
 let refresh_token;
 let expires_in;
-let token_expirado = false;
+let usuarioId;
+let tokenExpirado = false;
 
 async function getToken(code) {
     
@@ -40,9 +41,9 @@ async function getToken(code) {
         console.log('ACCESS TOKEN FOI INSERIDO');
     }
 
+    tokenExpirado = false
     setTimeout(() => {
-        console.log('DEI REFRESH PELA PRIMEIRA VEZ');
-        refreshToken();
+        tokenExpirado = true
     }, expires_in)
 }
 
@@ -66,16 +67,16 @@ async function refreshToken() {
     expires_in = response.data.expires_in
     token_expirado = false
 
-    await db.updateData(access_token, expires_in, 1)
+    await db.updateData(access_token, expires_in, 1);
 
+    tokenExpirado = false;
     setTimeout(() => {
-        console.log('DEI REFRESH');
-        refreshToken();
+        tokenExpirado = true;
     }, expires_in)
 }
 
 async function getUsuario() {
-    // if(token_expirado) await refreshToken();
+    if(tokenExpirado) await refreshToken();
 
     const response = await axios({
         method: "GET",
@@ -86,16 +87,11 @@ async function getUsuario() {
         }
     })
 
-    const usuarioLogado = {
-        nome: response.data.display_name,
-        id: response.data.id
-    }
-
-    return usuarioLogado;
+    usuarioId = response.data.items[0].name
 }
 
 async function getTopUsuario() {
-    // if(token_expirado) await refreshToken();
+    if(tokenExpirado) await refreshToken();
 
     const response = await axios({
         method: "GET",
@@ -106,11 +102,7 @@ async function getTopUsuario() {
         }
     })
 
-    const topItems = {
-        artistas: response.data.items[0].name,
-    }
-
-    return topItems;
+    usuarioId = response.data.items[0].name
 }
 
 // async function getAudioAnalysis() {
