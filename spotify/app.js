@@ -31,5 +31,5 @@ async function handleServerClose() {
     process.exit(0);
   }
   
-  // Evento 'SIGINT' do processo
-  process.on('SIGINT', handleServerClose);
+// Evento 'SIGINT' do processo
+process.on('SIGINT', handleServerClose);
