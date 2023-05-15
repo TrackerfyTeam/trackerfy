@@ -18,8 +18,17 @@ app.get('/callback', async (req, res) => {
     res.render('home');
 
     await spotifyApi.getToken(req.query.code);
-    await spotifyApi.getTopTracksUsuario("long_term");
+    // await spotifyApi.getTopTracksUsuario("long_term");
 });
+
+app.get('/user', async (req, res) => {
+    console.log('página acessada');
+    res.render('topUser');
+})
+
+app.get('/years', async (req, res) => {
+    res.render('topYears');
+})
 
 async function deletePreviousToken() {
     await db.deleteData(1);
