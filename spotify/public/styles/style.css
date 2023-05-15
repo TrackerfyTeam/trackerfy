@@ -14,7 +14,7 @@
 }
 
 body {
-    background: linear-gradient(320deg, var(--background-color),var(--mid-color),var(--background-color));
+    background: linear-gradient(180deg, var(--background-color),var(--mid-color));
     box-sizing: border-box;
     height: 100vh;
 }
