@@ -15,21 +15,27 @@ app.get('/', (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
-    res.render('playlists');
+    res.render('home');
 
     await spotifyApi.getToken(req.query.code);
+    await spotifyApi.getTopTracksUsuario("long_term");
 });
 
-const server = app.listen(3000, () => {
-    console.log('aplication running!');
-});
-
-server;
+async function deletePreviousToken() {
+    await db.deleteData(1);
+    console.log('previous token was deleted successfully.');
+}
 
 async function handleServerClose() {
     await db.deleteData(1);
+    console.log('previous token was deleted successfully.');
     process.exit(0);
-  }
-  
-// Evento 'SIGINT' do processo
+}
+
+app.listen(3000, async () => {
+    await deletePreviousToken();
+    console.log('aplication running!');
+});
+
 process.on('SIGINT', handleServerClose);
+

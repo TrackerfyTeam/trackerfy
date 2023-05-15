@@ -8,37 +8,60 @@ const client_secret = process.env.CLIENT_SECRET;
 let access_token;
 let refresh_token;
 let expires_in;
-let usuarioId;
 let tokenExpirado = false;
 
 async function getToken(code) {
-    
-    if (await db.getData(1) != undefined) {
-        console.log('ACCESS_TOKEN JA EXISTE');
-        await db.updateData(access_token, expires_in, 1);
-    } else {
-        const body = {
-            grant_type: "authorization_code",
-            code: code,
-            redirect_uri: "http://localhost:3000/callback"
-        }
-    
-        const response = await axios({
-            method: "POST",
-            url: "https://accounts.spotify.com/api/token",
-            data: new URLSearchParams(Object.entries(body)).toString(),
-            headers: {
-                Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
-                "Content-Type": "application/x-www-form-urlencoded"
+    let dbresponse = await db.getData(1);
+
+    if (dbresponse != undefined) {
+        if (dbresponse.access_token != null) {
+            console.log("token already existed and was updated successfully");
+            await db.updateData(access_token, expires_in, 1);
+        } else {
+            console.log("token was null and will be inserted");
+            const body = {
+                grant_type: "authorization_code",
+                code: code,
+                redirect_uri: "http://localhost:3000/callback"
             }
-        })
-    
-        access_token = response.data.access_token;
-        refresh_token = response.data.refresh_token;
-        expires_in = response.data.expires_in;
-        token_expirado = false;
-        await db.insertData(access_token, expires_in, 1)
-        console.log('ACCESS TOKEN FOI INSERIDO');
+            const response = await axios({
+                method: "POST",
+                url: "https://accounts.spotify.com/api/token",
+                data: new URLSearchParams(Object.entries(body)).toString(),
+                headers: {
+                    Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            access_token = response.data.access_token;
+            refresh_token = response.data.refresh_token;
+            expires_in = response.data.expires_in;
+            
+            await db.updateData(access_token, expires_in, 1);
+            console.log("token was added successfully");
+        }
+    } else {
+        console.log("token didn't exist and will be inserted");
+            const body = {
+                grant_type: "authorization_code",
+                code: code,
+                redirect_uri: "http://localhost:3000/callback"
+            }
+            const response = await axios({
+                method: "POST",
+                url: "https://accounts.spotify.com/api/token",
+                data: new URLSearchParams(Object.entries(body)).toString(),
+                headers: {
+                    Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            access_token = response.data.access_token;
+            refresh_token = response.data.refresh_token;
+            expires_in = response.data.expires_in;
+            
+            await db.insertData(access_token, expires_in, 1);
+            console.log("token was added successfully");
     }
 
     tokenExpirado = false
@@ -65,7 +88,6 @@ async function refreshToken() {
     
     access_token = response.data.access_token
     expires_in = response.data.expires_in
-    token_expirado = false
 
     await db.updateData(access_token, expires_in, 1);
 
@@ -75,53 +97,35 @@ async function refreshToken() {
     }, expires_in)
 }
 
-async function getUsuario() {
+
+async function getTopTracksUsuario(time) {
     if(tokenExpirado) await refreshToken();
 
     const response = await axios({
         method: "GET",
-        url: "https://api.spotify.com/v1/me",
+        url: `https://api.spotify.com/v1/me/top/tracks/?time_range=${time}`,
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${access_token}`
         }
     })
 
-    usuarioId = response.data.items[0].name
+    console.log(response.data);
 }
 
-async function getTopUsuario() {
+async function getTopArtistsUsuario(time) {
     if(tokenExpirado) await refreshToken();
 
     const response = await axios({
         method: "GET",
-        url: "https://api.spotify.com/v1/me/top/tracks/?time_range=long_term",
+        url: `https://api.spotify.com/v1/me/top/artists/?time_range=${time}`,
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${access_token}`
         }
     })
 
-    usuarioId = response.data.items[0].name
+    console.log(response.data);
 }
 
-// async function getAudioAnalysis() {
-//     if(token_expirado) await refreshToken();
-
-//     const response = await axios({
-//         method: "GET",
-//         url: "https://api.spotify.com/v1/audio-analysis/",
-//         headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${access_token}`
-//         }
-//     })
-
-//     const topItems = {
-//         artistas: response.data.items[2].name,
-//     }
-
-//     return topItems;
-// }
-
-module.exports = {getToken, refreshToken, getUsuario, getTopUsuario}
+module.exports = {getToken, refreshToken, getTopArtistsUsuario, getTopTracksUsuario}
