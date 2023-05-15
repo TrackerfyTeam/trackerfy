@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #1DB954;
+    --mid-color:#17883e;
+    --secondary-color: rgb(46, 46, 46);
+    --background-color: black;
+    --font-montserrat: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(320deg, var(--background-color),var(--mid-color),var(--background-color));
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+
+.header {
+    padding: 2% 10% 2% 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.header__logos {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header__img {
+    width: 10%;
+}
+
+.header__menu {
+    display: flex;
+    gap: 5rem;
+}
+
+.header__menu__name {
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    font-size: 2rem;
+}
+
+.header__text {
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    justify-content: center;
+}
+
+.header__menu a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-family: var(--font-montserrat);
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.header__menu a:hover {
+    text-decoration: underline;
+}
+
+.header__menu__dropdown__item__years{
+    justify-content: center;
+}
+
+.header__menu__dropdown__item__years__submenu a{
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; 
+}
+
+.header__menu__dropdown__item:hover .header__menu__dropdown__item__years__submenu a{
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.presentation {
+    padding: 5% 15%;
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: var(--background-color);
+    /* background-color: var(--background-color); */
+    padding-right: 100px;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--font-montserrat);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.footer p {
+    padding: 24px;
+}
