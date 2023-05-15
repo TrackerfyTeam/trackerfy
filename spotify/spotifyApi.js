@@ -13,55 +13,31 @@ let tokenExpirado = false;
 async function getToken(code) {
     let dbresponse = await db.getData(1);
 
-    if (dbresponse != undefined) {
-        if (dbresponse.access_token != null) {
-            console.log("token already existed and was updated successfully");
-            await db.updateData(access_token, expires_in, 1);
-        } else {
-            console.log("token was null and will be inserted");
-            const body = {
-                grant_type: "authorization_code",
-                code: code,
-                redirect_uri: "http://localhost:3000/callback"
-            }
-            const response = await axios({
-                method: "POST",
-                url: "https://accounts.spotify.com/api/token",
-                data: new URLSearchParams(Object.entries(body)).toString(),
-                headers: {
-                    Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-            access_token = response.data.access_token;
-            refresh_token = response.data.refresh_token;
-            expires_in = response.data.expires_in;
-            
-            await db.updateData(access_token, expires_in, 1);
-            console.log("token was added successfully");
-        }
+    if (dbresponse) {
+        console.log("token already existed and was updated successfully");
+        await db.updateData(access_token, expires_in, 1);
     } else {
         console.log("token didn't exist and will be inserted");
-            const body = {
-                grant_type: "authorization_code",
-                code: code,
-                redirect_uri: "http://localhost:3000/callback"
+        const body = {
+            grant_type: "authorization_code",
+            code: code,
+            redirect_uri: "http://localhost:3000/callback"
+        }
+        const response = await axios({
+            method: "POST",
+            url: "https://accounts.spotify.com/api/token",
+            data: new URLSearchParams(Object.entries(body)).toString(),
+            headers: {
+                Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
+                "Content-Type": "application/x-www-form-urlencoded"
             }
-            const response = await axios({
-                method: "POST",
-                url: "https://accounts.spotify.com/api/token",
-                data: new URLSearchParams(Object.entries(body)).toString(),
-                headers: {
-                    Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
-            access_token = response.data.access_token;
-            refresh_token = response.data.refresh_token;
-            expires_in = response.data.expires_in;
-            
-            await db.insertData(access_token, expires_in, 1);
-            console.log("token was added successfully");
+        })
+        access_token = response.data.access_token;
+        refresh_token = response.data.refresh_token;
+        expires_in = response.data.expires_in;
+        
+        await db.insertData(access_token, expires_in, 1);
+        console.log("token was added successfully");
     }
 
     tokenExpirado = false

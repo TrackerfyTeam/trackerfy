@@ -32,7 +32,8 @@ async function getData(id) {
     const conn = await connect();
     const sql = 'SELECT *FROM accesstokendb where id=?;'
     const result = await conn.query(sql, id);
-    return result[0][0]
+    // return result[0][0]
+    return result[0][0] != undefined ? true : false; 
 }
 
 async function updateData(access_token, expires_in, id) {

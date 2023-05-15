@@ -1,7 +1,0 @@
-login - > home
-
-home:
-    - top tracks (4 semanas, 6 meses, vida toda)
-    - top artistas
-    - top generos
-    - top musicas do ano
