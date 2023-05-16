@@ -7,18 +7,20 @@
 
 :root {
     --primary-color: #1DB954;
-    --mid-color:#17883e;
-    --secondary-color: rgb(46, 46, 46);
+    --primary-darker:#17883e;
     --background-color: black;
+    --secondary-color: #121212;
+    --container-background-color: #222222;
+    --text-color: #fff;
     --font-montserrat: 'Montserrat', sans-serif;
 }
 
 body {
-    background: linear-gradient(150deg, var(--background-color),var(--primary-color), var(--background-color));
+    background: linear-gradient(135deg, var(--background-color), var(--secondary-color) 60%);
     box-sizing: border-box;
     height: 100vh;
+    font-family: var(--font-montserrat);
 }
-
 
 .header {
     padding: 2% 10% 2% 10%;
@@ -45,14 +47,13 @@ body {
 
 .header__title {
     color: var(--primary-color);
-    font-family: var(--font-montserrat);
     display: flex;
     font-size: 2rem;
 }
 
 .header__text {
     color: var(--primary-color);
-    font-family: var(--font-montserrat);
+    
     display: flex;
     justify-content: center;
 }
@@ -60,7 +61,6 @@ body {
 .header__menu a {
     color: var(--primary-color);
     text-decoration: none;
-    font-family: var(--font-montserrat);
     display: flex;
     font-size: 1.5rem;
 }
@@ -87,25 +87,44 @@ body {
 .presentation {
     padding: 5% 15%;
     color: var(--primary-color);
-    font-family: var(--font-montserrat);
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 50px;
 }
 
+.link__button {
+    background-color: var(--container-background-color);
+    /* border: 3px solid var(--background-color); */
+    padding: 1rem 3.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.link__button:hover{
+    transform: scale(1.10);
+    color: var(--primary-color);
+}
+
 .footer {
+    border-top: 3px solid var(--container-background-color);
     position: fixed;
     bottom: 0;
     width: 100%;
-    color: var(--background-color);
+    color: var(--text-color);
     /* background-color: var(--background-color); */
     padding-right: 100px;
     text-align: center;
     justify-content: center;
-    font-family: var(--font-montserrat);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
+}
+
+.footer__content {
+    
 }
 
 .footer p {
