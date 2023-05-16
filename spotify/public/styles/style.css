@@ -14,7 +14,7 @@
 }
 
 body {
-    background: linear-gradient(180deg, var(--background-color),var(--mid-color));
+    background: linear-gradient(150deg, var(--background-color),var(--primary-color), var(--background-color));
     box-sizing: border-box;
     height: 100vh;
 }
@@ -27,10 +27,11 @@ body {
     align-items: baseline;
 }
 
-.header__logos {
+.header__container {
     display: flex;
     gap: 1rem;
     align-items: center;
+    text-decoration: none;
 }
 
 .header__img {
@@ -42,7 +43,7 @@ body {
     gap: 5rem;
 }
 
-.header__menu__name {
+.header__title {
     color: var(--primary-color);
     font-family: var(--font-montserrat);
     display: flex;
