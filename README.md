@@ -1,2 +1,0 @@
-# spotifytracker
-# salame
