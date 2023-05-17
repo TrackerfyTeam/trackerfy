@@ -15,10 +15,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
-    res.render('home');
-
     await spotifyApi.getToken(req.query.code);
-    // await spotifyApi.getTopTracksUsuario("long_term");
+    await spotifyApi.getTopTracksUsuario("long_term");
 });
 
 app.get('/user', async (req, res) => {

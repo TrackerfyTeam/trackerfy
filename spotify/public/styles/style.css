@@ -28,7 +28,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -91,17 +91,44 @@ body {
 }
 
 .header__menu__dropdown__item:hover .header__menu__dropdown__item__years__submenu a{
-    opacity: 1;
     transition: opacity 1s ease-in-out;
+    opacity: 1;
 }
 
 .presentation {
-    padding: 5% 15%;
     color: var(--primary-color);
+    gap: 50px;
+}
+
+.item__container {
+    display: grid;
+    grid-template-columns: 1% 30% 30% 30%;
+    margin-bottom: 1rem;
+}
+
+.item__container div {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    gap: 50px;
+}
+
+.item__image {
+    display: flex;
+    align-items: center;
+}
+
+.item__container img {
+    margin-left: 2rem;
+    width: 50px;
+    border-radius: 15px;
+}
+
+.item__track__name {
+    display: flex;
+    justify-content: center;
+}
+.item__artist__name {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .link__button {

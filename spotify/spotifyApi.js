@@ -73,7 +73,6 @@ async function refreshToken() {
     }, expires_in)
 }
 
-
 async function getTopTracksUsuario(time) {
     if(tokenExpirado) await refreshToken();
 
