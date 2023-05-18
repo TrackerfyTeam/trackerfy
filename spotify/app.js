@@ -15,14 +15,20 @@ app.get('/', (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
+    res.render('home.ejs');
     await spotifyApi.getToken(req.query.code);
-    await spotifyApi.getTopTracksUsuario("long_term");
+    const playlistId = await db.getPlaylistByYear(2022);
+    const playlist = await spotifyApi.getPlaylistById(playlistId);
+    const playlistTracks = playlist.tracks.items
+    const nomes = playlistTracks.map((obj) => {
+        return obj.track.name
+    })
+    console.log(nomes);
 });
 
-app.get('/user', async (req, res) => {
-    console.log('página acessada');
-    res.render('topUser');
-})
+// app.get('/user', async (req, res) => {
+//     console.log('página acessada');
+// })
 
 app.get('/years', async (req, res) => {
     res.render('topYears');

@@ -11,7 +11,7 @@ let expires_in;
 let tokenExpirado = false;
 
 async function getToken(code) {
-    let dbresponse = await db.getData(1);
+    let dbresponse = await db.getAccessToken(1);
 
     if (dbresponse) {
         console.log("token already existed and was updated successfully");
@@ -103,4 +103,19 @@ async function getTopArtistsUsuario(time) {
     console.log(response.data);
 }
 
-module.exports = {getToken, refreshToken, getTopArtistsUsuario, getTopTracksUsuario}
+async function getPlaylistById(id) {
+    if(tokenExpirado) await refreshToken();
+
+    const response = await axios({
+        method: "GET",
+        url: `https://api.spotify.com/v1/playlists/${id}`,
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`
+        }
+    })
+
+    return response.data;
+}
+
+module.exports = {getToken, refreshToken, getTopArtistsUsuario, getTopTracksUsuario, getPlaylistById}
