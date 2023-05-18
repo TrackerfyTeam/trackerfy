@@ -26,10 +26,6 @@ app.get('/callback', async (req, res) => {
     console.log(nomes);
 });
 
-// app.get('/user', async (req, res) => {
-//     console.log('página acessada');
-// })
-
 app.get('/years', async (req, res) => {
     res.render('topYears');
 })

@@ -1,3 +1,6 @@
+import display from '../../display.js'
+
+console.log(display.cu);
 const button = document.querySelector('button');
 
 data = {
