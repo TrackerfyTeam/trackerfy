@@ -4,6 +4,9 @@ const spotifyApi = require('./spotifyApi')
 
 const app = express();
 
+// let nomes;
+let code;
+
 app.use(express.static('public'));
 app.use(express.json({limit: "1mb"}));
 
@@ -15,16 +18,31 @@ app.get('/', (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
+    code = req.query.code;
     res.render('home.ejs');
-    await spotifyApi.getToken(req.query.code);
+});
+
+app.get('/api', async (req, res) => {
+    
+    let n = 0;
+    console.log('Fui requisitado callback');
+
+    await spotifyApi.getToken(code);
     const playlistId = await db.getPlaylistByYear(2022);
     const playlist = await spotifyApi.getPlaylistById(playlistId);
-    const playlistTracks = playlist.tracks.items
-    const nomes = playlistTracks.map((obj) => {
-        return obj.track.name
-    })
-    console.log(nomes);
-});
+    const playlistTracks = playlist.tracks.items;
+
+    const nomes = await playlistTracks.map((obj) => {
+        let imageURL = obj.track.album.images[0].url
+        let trackName = obj.track.name;
+        let artistName = obj.track.artists[0].name;
+        n++
+        // db.insertTracksData(imageURL, trackName, artistName, n);
+        return [imageURL, trackName, artistName, n];
+    });
+
+    res.json(nomes)
+})
 
 app.get('/years', async (req, res) => {
     res.render('topYears');

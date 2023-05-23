@@ -36,7 +36,7 @@ async function getToken(code) {
         refresh_token = response.data.refresh_token;
         expires_in = response.data.expires_in;
         
-        await db.insertData(access_token, expires_in, 1);
+        await db.insertToken(access_token, expires_in, 1);
         console.log("token was added successfully");
     }
 

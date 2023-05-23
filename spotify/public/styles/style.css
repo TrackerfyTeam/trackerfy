@@ -18,8 +18,9 @@
 
 body {
     background: linear-gradient(135deg, var(--background-color), var(--primary-darker) 130%);
+    background-repeat: no-repeat;
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     font-family: var(--font-montserrat);
 }
 
@@ -102,7 +103,7 @@ body {
 
 .item__container {
     display: grid;
-    grid-template-columns: 1% 30% 30% 30%;
+    grid-template-columns: 1% 30% 40% 30%;
     margin-bottom: 1rem;
 }
 
@@ -148,11 +149,9 @@ body {
 
 .footer__section {
     border-top: 3px solid var(--secondary-color);
-    position: fixed;
     bottom: 0;
     width: 100%;
     color: var(--text-color);
-    padding-right: 100px;
     text-align: center;
     justify-content: center;
     font-size: 0.9rem;
