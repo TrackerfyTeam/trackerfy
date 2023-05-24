@@ -68,4 +68,20 @@ router.post('/api/tracks', async (req, res) => {
     res.json(userTracks);
 });
 
+router.post('/api/artists', async (req, res) => {
+    let n = 0;
+    const { time } = req.body;
+
+    const tracksUsuario = await spotifyApi.getTopArtistsUsuario(time);
+
+    const userTracks = await tracksUsuario.map((obj) => {
+        let artistName = obj.name;
+        let imageURL = obj.images[0].url;
+        n++;
+        return [imageURL, artistName, n];
+    })
+
+    res.json(userTracks);
+});
+
 module.exports = router;

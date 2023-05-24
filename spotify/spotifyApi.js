@@ -93,14 +93,14 @@ async function getTopArtistsUsuario(time) {
 
     const response = await axios({
         method: "GET",
-        url: `https://api.spotify.com/v1/me/top/tracks/?time_range=${time}&limit=50`,
+        url: `https://api.spotify.com/v1/me/top/artists/?time_range=${time}&limit=50`,
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${access_token}`
         }
     })
 
-    return response.data;
+    return response.data.items;
 }
 
 async function getPlaylistById(id) {

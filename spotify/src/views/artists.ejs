@@ -5,33 +5,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/styles/style.css">
-    <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+    <!-- <link rel="stylesheet" href="../../public/styles/style.css"> -->
+    <link rel="stylesheet" href="/styles/style.css">
     <title>Trackerfy</title>
 </head>
 
 <body>
     <header class="header">
-        <div class="header__logos">
-            <img class="header__img" alt="Spotify Logo" src="../assets/spotify_logo.png">
-            <h1 class="header__menu__name">Trackerfy</h1>
-        </div>
-        <div class="header__text">
-            <h1>Most played songs: </h1>
-        </div>
-        <div class="header__nav">
-            <nav class="header__menu">
-                <a href="/years">years</a>
-            </nav>
-        </div>
+        <a href="/callback" class="header__container">
+            <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
+            <h1 class="header__title">Trackerfy</h1>
+        </a>
+
+        <a href="/tracks">
+            Tracks
+        </a>
     </header>
-    <main class="presentation">
-        <h2>The top 20 songs most played this week are</h2>
-        <h3>This part of the page will have the top 20 songs listed according to the number of plays that year.</h3>
+
+    <main class="presentation container">
+        <label for="select_time">Choose a time range:</label>
+        <select name="select_time" id="time">
+            <option value="long_term">long</option>
+            <option value="medium_term">medium</option>
+            <option value="short_term">short</option>
+        </select>
+        <button class="select__button">
+            get tracks
+        </button>
+        <div class="tracks">
+
+        </div>
     </main>
-    <footer class="footer">
-        <p>Trackerfy</p>
+
+    <footer class="footer__section section">
+        <div class="footer__content__container container">
+            <div class="footer__about">
+                <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
+                <div class="footer__about__text">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur delectus odio temporibus officiis nihil unde
+                </div>
+            </div>
+            <div class="footer__contact">
+                <h3>Contact</h3>
+                <a href="https://github.com/FernandoMMattos/spotifytracker" class="footer__contact__link">
+                    <i class="uil uil-github-alt"></i>
+                </a>
+            </div>
+        </div>
+        <div>Copyright <i class="fa-regular fa-copyright"></i> 2023 Trackerfy | All Rights Reserved </div>
     </footer>
+
+    <script src="/js/artists.js"></script>
 </body>
 
 </html>
