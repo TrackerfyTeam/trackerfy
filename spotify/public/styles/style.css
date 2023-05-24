@@ -35,6 +35,7 @@ body {
 }
 
 .header {
+    position: fixed;
     padding: 2% 10% 2% 10%;
     display: flex;
     justify-content: space-between;
@@ -119,7 +120,7 @@ body {
 
 .item__container img {
     margin-left: 2rem;
-    width: 50px;
+    width: 70px;
     border-radius: 15px;
 }
 

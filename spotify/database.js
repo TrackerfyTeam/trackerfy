@@ -28,13 +28,6 @@ async function insertToken(access_token, expires_in, id){
     return await conn.query(sql, values)
 }
 
-async function insertTracksData(imageurl, trackname, artistname, id){
-    const conn = await connect();
-    const sql = `INSERT INTO trackdata(imageurl, trackname, artistname, id) VALUES (?, ?, ?, ?);`
-    const values = [imageurl, trackname, artistname, id];
-    return await conn.query(sql, values);
-}
-
 async function updateData(access_token, expires_in, id) {
     const conn = await connect();
     const sql = 'UPDATE accesstokendb SET access_token=?, expires_in=?, id=?'
@@ -55,13 +48,6 @@ async function getAccessToken(id) {
     return result[0][0] != undefined ? true : false; 
 }
 
-async function getTracksData() {
-    const conn = await connect();
-    const sql = 'SELECT *FROM trackdata'
-    const result = await conn.query(sql);
-    return result[0];
-}
-
 async function getPlaylistByYear(year) {
     const conn = await connect();
     const sql = 'SELECT *FROM idLink where ano=?;'
@@ -69,8 +55,4 @@ async function getPlaylistByYear(year) {
     return result[0][0].idlink
 }
 
-// async function getAllPlaylists() {
-
-// }
-
-module.exports = {insertToken, getAccessToken, updateData, deleteData, getPlaylistByYear, insertTracksData, getTracksData}
+module.exports = {insertToken, getAccessToken, updateData, deleteData, getPlaylistByYear}

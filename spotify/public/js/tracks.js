@@ -1,5 +1,3 @@
-const main = document.querySelector('.presentation');
-
 function createDiv(imageURL, trackName, artistName, ranking) {
     const div1 = document.createElement('div');
     const div2 = document.createElement('div');
@@ -28,17 +26,29 @@ function createDiv(imageURL, trackName, artistName, ranking) {
     return div1;
 }
 
-fetch('http://localhost:3000/api')
-  .then(response => response.json())
-  .then(data => {
-    
-    data.map((obj) => {
-        console.log(obj);
-        const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
-        main.appendChild(item);
+const tracks = document.querySelector('.tracks');
+const selectTime = document.getElementById('time');
+const selectButton = document.querySelector('.select__button');
+
+selectButton.addEventListener('click', (e) => {
+  console.log(selectTime.value);
+  fetch('/api/tracks', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+      time: selectTime.value
     })
   })
-  .catch(error => {
-    // Trate os erros adequadamente
-    console.error('Erro:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+        tracks.innerHTML = '';
+        data.map((obj) => {
+          const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
+          tracks.appendChild(item);
+        })
+    });
+});
+
+

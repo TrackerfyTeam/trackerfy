@@ -28,12 +28,11 @@ function createDiv(imageURL, trackName, artistName, ranking) {
     return div1;
 }
 
-fetch('http://localhost:3000/api')
+fetch('http://localhost:3000/api/home')
   .then(response => response.json())
   .then(data => {
     
     data.map((obj) => {
-        console.log(obj);
         const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
         main.appendChild(item);
     })
