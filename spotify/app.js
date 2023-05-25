@@ -1,53 +1,34 @@
 const express = require('express');
+const db = require('./database');
+const routes = require('./routes');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-const LocalStorage = require('node-localstorage').LocalStorage;
-const localStorage = new LocalStorage('./scratch');
-
-require('dotenv').config();
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-
-const SpotifyWebApi = require('spotify-web-api-node');
-
-const spotifyApi = new SpotifyWebApi({
-    clientId: client_id,
-    clientSecret: client_secret,
-    redirectUri: "http://localhost:3000/callback",
-})
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json({limit: "1mb"}));
+app.use('/', routes);
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.render('login');
-})
+async function deletePreviousToken() {
+    await db.deleteData(1);
+    console.log('previous token was deleted successfully.');
+}
 
-app.get('/callback', async (req, res) => {
-    
-    let access_token_str = localStorage.getItem('acess_token');
-    if (access_token_str) {
-        const access_token = JSON.parse(access_token_str).body.access_token
-        
-        spotifyApi.setAccessToken(access_token);
-        
-        spotifyApi.getPlaylist('37i9dQZEVXbMDoHDwVN2tF')
-            .then(function(data) {
-                res.render('year');
-                console.log(data.body.tracks.items[6].track.artists[0].name);
-            }, function(err) {
-                console.log('Something went wrong!', err);
-            });
-    } else {
-        spotifyApi.authorizationCodeGrant(req.query.code).then((response) => {
-            localStorage.setItem('acess_token', JSON.stringify(response));
-        });
-    }
-});
+async function handleServerClose() {
+    await db.deleteData(1);
+    console.log('previous token was deleted successfully.');
+    process.exit(0);
+}
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
+    await deletePreviousToken();
     console.log('aplication running!');
 });
+
+process.on('SIGINT', handleServerClose);
