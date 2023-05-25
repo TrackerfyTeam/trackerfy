@@ -1,7 +1,7 @@
 const button = document.querySelector('button');
 
 data = {
-    clientID: 'c4a70cb602e745e0bab72dd3ff52d7b5',
+    clientID: '65b4e3c4153f4e99a2baa7ef3c474b14',
     scope: [
         'ugc-image-upload',
         'user-read-playback-state',
