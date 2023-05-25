@@ -36,18 +36,11 @@ body {
 
 .header {
     position: fixed;
-<<<<<<< Updated upstream
-    padding: 2% 10% 2% 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-=======
     top: 0;
     left: 0;
     width: 100%;
     /* padding: 2rem 0; */
     background-color: #0d5025;
->>>>>>> Stashed changes
 }
 
 .header__container{
@@ -115,11 +108,8 @@ body {
 
 .presentation {
     color: var(--primary-color);
-<<<<<<< Updated upstream
-=======
     /* padding: 7rem; */
     margin-top: 10rem;
->>>>>>> Stashed changes
     gap: 50px;
 }
 
@@ -213,8 +203,6 @@ body {
     cursor: pointer;
     font-size: 1.35rem;
 }
-<<<<<<< Updated upstream
-=======
 
 .presentation__container {
   display: flex;
@@ -319,4 +307,3 @@ body {
     color: #fff;
   }
   
->>>>>>> Stashed changes
