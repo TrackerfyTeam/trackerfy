@@ -5,8 +5,9 @@ const db = require('./database');
 
 let code;
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     res.render('login');
+    await db.deleteData(1);
 });
 
 router.get('/callback', async (req, res) => {

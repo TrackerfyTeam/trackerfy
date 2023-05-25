@@ -3,11 +3,12 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
     --primary-color: #1DB954;
-    --primary-darker:#17883e;
+    --primary-darker: #17883e;
     --background-color: black;
     --secondary-color: #121212;
     --container-background-color: #222222;
@@ -22,6 +23,7 @@ body {
     box-sizing: border-box;
     height: 100%;
     font-family: var(--font-montserrat);
+    min-width: 400px;
 }
 
 .section {
@@ -29,9 +31,9 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin-right: auto;
+    max-width: 1200px;
     margin-left: auto;
+    margin-right: auto;
 }
 
 .header {
@@ -39,16 +41,31 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    /* padding: 2rem 0; */
-    background-color: #0d5025;
+    background-color: var(--secondary-color);
+    padding: 2rem 0;
 }
 
-.header__container{
-    padding: 2rem 20rem;
+.header__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__home__link {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.links__container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    gap: 2rem;
 }
 
 .header__home {
@@ -75,7 +92,7 @@ body {
 
 .header__text {
     color: var(--primary-color);
-    
+
     display: flex;
     justify-content: center;
 }
@@ -91,32 +108,26 @@ body {
     text-decoration: underline;
 }
 
-.header__menu__dropdown__item__years{
+.header__menu__dropdown__item__years {
     justify-content: center;
 }
 
-.header__menu__dropdown__item__years__submenu a{
+.header__menu__dropdown__item__years__submenu a {
     display: inline-block;
     opacity: 0;
-    transition: opacity 1s ease-in-out; 
+    transition: opacity 1s ease-in-out;
 }
 
-.header__menu__dropdown__item:hover .header__menu__dropdown__item__years__submenu a{
+.header__menu__dropdown__item:hover .header__menu__dropdown__item__years__submenu a {
     transition: opacity 1s ease-in-out;
     opacity: 1;
 }
 
-.presentation {
-    color: var(--primary-color);
-    /* padding: 7rem; */
-    margin-top: 10rem;
-    gap: 50px;
-}
-
 .item__container {
     display: grid;
-    grid-template-columns: 1% 30% 40% 30%;
+    grid-template-columns: 1% 33% 33% 33%;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .item__container div {
@@ -139,6 +150,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .item__artist__name {
     display: flex;
     justify-content: flex-end;
@@ -154,7 +166,7 @@ body {
     text-decoration: none;
 }
 
-.link__button:hover{
+.link__button:hover {
     transform: scale(1.10);
     color: var(--primary-color);
 }
@@ -168,6 +180,7 @@ body {
     justify-content: center;
     font-size: 0.9rem;
     font-weight: 400;
+    background: var(--secondary-color);
 }
 
 .footer__content__container {
@@ -188,7 +201,7 @@ body {
     padding: 2rem 0;
 }
 
-.footer__contact h3{
+.footer__contact h3 {
     font-size: 0.9rem;
     color: var(--subtitle-color);
     margin-bottom: 10px;
@@ -199,69 +212,71 @@ body {
     color: var(--text-color);
 }
 
-.footer__contact__link i{
+.footer__contact__link i {
     cursor: pointer;
     font-size: 1.35rem;
 }
 
 .presentation__container {
-  display: flex;
-  font-weight: bold;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  background-color: #1DB954;
-  color: #fff;
+    color: var(--text-color);
+    margin-top: 10rem;
+    min-height: 100vh;
+}
+
+.select__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .presentation__container label {
-  font-size: 18px;
-  margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .presentation__container select {
-  width: 200px;
-  height: 30px;
-  font-size: 16px;
-  margin-bottom: 10px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
 }
 
 .presentation__container button.select__button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #fff;
-  color: #1DB954;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #1DB954;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .presentation__container button.select__button:hover {
-  background-color: #1ED760;
-  color: #fff;
+    background-color: #1ED760;
+    color: #fff;
 }
 
 .presentation_container .tracks {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 
 #time {
-  background-color: #fff;
-  color: #1DB954;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 9px;
-  font-size: 16px;
-  width: 150px;
+    background-color: #fff;
+    color: #1DB954;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 9px;
+    font-size: 16px;
+    width: 150px;
 }
 
 #time option {
-  background-color: #fff;
-  color: #1DB954;
+    background-color: #fff;
+    color: #1DB954;
 }
 
 .select__button {
@@ -274,22 +289,22 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
-  }
-  
-  .select__button:hover {
+}
+
+.select__button:hover {
     background-color: #1ED760;
-  }
-  
-  .select__button:focus {
+}
+
+.select__button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.4);
-  }
-  
-  .select__button:active {
-    transform: scale(0.95);
-  }
+}
 
-  .spotify-link {
+.select__button:active {
+    transform: scale(0.95);
+}
+
+.spotify-link {
     padding: 8px 10px;
     font-size: 16px;
     font-weight: bold;
@@ -297,13 +312,11 @@ body {
     text-decoration: none;
     border: 2px solid #1DB954;
     border-radius: 8px;
-    margin-right: 40px;
     background-color: #fff;
     transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .spotify-link:hover {
+}
+
+.spotify-link:hover {
     background-color: #1DB954;
     color: #fff;
-  }
-  
+}

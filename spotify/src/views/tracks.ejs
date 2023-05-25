@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../../public/styles/style.css"> -->
     <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Trackerfy</title>
 </head>
+
 <body>
     <header class="header">
-        <a href="home.html" class="header__container">
-            <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
-            <h1 class="header__title">Trackerfy</h1>
-        </a>
+        <div class="header__container container">
+            <div class="home__link__container">
+                <a href="/callback" class="header__home__link">
+                    <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
+                    <h1 class="header__title">Trackerfy</h1>
+                </a>
+            </div>
+
+            <div class="links__container">
+                <a href="/tracks" class="spotify-link">Tracks</a>
+                <a href="/tracks" class="spotify-link">Artists</a>
+                <a href="/tracks" class="spotify-link">Genres</a>
+                <a href="/tracks" class="spotify-link">Top Hits in Years</a>
+            </div>
+        </div>
     </header>
 
-    <main class="presentation container">
-        <label for="select_time">Choose a time range:</label>
-        <select name="select_time" id="time">
-            <option value="long_term">long</option>
-            <option value="medium_term">medium</option>
-            <option value="short_term">short</option>
-        </select>
-        <button class="select__button">
-            get tracks
-        </button>
+    <main class="presentation__container container">
+        <div class="select__container">
+            <label for="select_time">Choose a time range:</label>
+            <select name="select_time" id="time">
+                <option value="short_term">short</option>
+                <option value="medium_term">medium</option>
+                <option value="long_term">long</option>
+            </select>
+            <button class="select__button">
+                get tracks
+            </button>
+        </div>
         <div class="tracks">
 
         </div>
@@ -49,6 +67,7 @@
         <div>Copyright <i class="fa-regular fa-copyright"></i> 2023 Trackerfy | All Rights Reserved </div>
     </footer>
 
-<script src="/js/tracks.js"></script>
+    <script src="/js/tracks.js"></script>
 </body>
+
 </html>

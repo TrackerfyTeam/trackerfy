@@ -1,4 +1,4 @@
-const main = document.querySelector('.presentation');
+const main = document.querySelector('.presentation__container');
 
 function createDiv(imageURL, trackName, artistName, ranking) {
     const div1 = document.createElement('div');
