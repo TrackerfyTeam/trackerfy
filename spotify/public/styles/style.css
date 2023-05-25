@@ -35,17 +35,23 @@ body {
 }
 
 .header {
-
     position: fixed;
-    width: 80%;
-    padding: 2rem 10rem 1rem 9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* padding: 2rem 0; */
     background-color: #0d5025;
 }
 
-.header__container {
+.header__container{
+    padding: 2rem 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__home {
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -102,7 +108,8 @@ body {
 
 .presentation {
     color: var(--primary-color);
-    padding: 7rem;
+    /* padding: 7rem; */
+    margin-top: 10rem;
     gap: 50px;
 }
 
@@ -283,14 +290,13 @@ body {
   }
 
   .spotify-link {
-    display: inline-block;
     padding: 8px 10px;
     font-size: 16px;
     font-weight: bold;
     color: #1DB954;
     text-decoration: none;
     border: 2px solid #1DB954;
-    border-radius: 20px;
+    border-radius: 8px;
     margin-right: 40px;
     background-color: #fff;
     transition: background-color 0.3s ease, color 0.3s ease;
