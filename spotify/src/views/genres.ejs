@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="../../public/styles/style.css"> -->
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/genres.css">
     <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Trackerfy</title>
@@ -43,10 +44,14 @@
                 get tracks
             </button>
         </div>
-        <div class="tracks">
-
+        <div class="chart__container">
+            <div class="canvas-container">
+                <canvas id="Chart.js"></canvas>
+            </div>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <footer class="footer__section section">
         <div class="footer__content__container container">
