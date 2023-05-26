@@ -85,4 +85,33 @@ router.post('/api/artists', async (req, res) => {
     res.json(userTracks);
 });
 
+router.post('/api/genres', async (req, res) => {
+    let n = 0;
+    const { time } = req.body;
+
+    const tracksUsuario = await spotifyApi.getTopArtistsUsuario(time);
+
+    const genresObj = {}
+
+    const arrayGenres = await tracksUsuario.map((obj) => {
+        // console.log(obj.genres);
+        return obj.genres
+    })
+
+    arrayGenres.map((array) => {
+        if (array.length > 0) {
+            array.forEach(element => {
+                if (element in genresObj) {
+                    console.log(element);
+                    genresObj[element] += 1;
+                } else {
+                    genresObj[element] = 1;
+                }
+            });
+        }
+    })
+
+    res.json(genresObj);
+});
+
 module.exports = router;
