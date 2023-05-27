@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 router.get('/callback', async (req, res) => {
     code = req.query.code;
     res.render('home');
+    console.log(req.query);
 });
 
 router.get('/tracks', (req, res) => {
