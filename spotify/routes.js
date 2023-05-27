@@ -102,7 +102,6 @@ router.post('/api/genres', async (req, res) => {
         if (array.length > 0) {
             array.forEach(element => {
                 if (element in genresObj) {
-                    console.log(element);
                     genresObj[element] += 1;
                 } else {
                     genresObj[element] = 1;

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/years.css">
     <!-- <link rel="stylesheet" href="/styles/style.css"> -->
     <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <title>Trackerfy</title>
@@ -13,42 +14,58 @@
 
 <body>
     <header class="header">
-        <div class="header__logos">
-            <a href="home.html" class="header__container">
-                <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
-                <h1 class="header__menu__name">Trackerfy</h1>
-            </a>
-        </div>
-        <div class="header__text">
-            <h1>Most played songs: </h1>
-        </div>
-        <div class="header__nav">
-            <nav class="header__menu">
-                <ul class="header__menu__dropdown">
-                    <li class="header__menu__dropdown__item">
-                        <a href="" class="header__menu__dropdown__item__years">Years</a>
-                        <ul class="header__menu__dropdown__item__years__submenu">
-                            <li class="header__menu__dropdown__item__years__submenu__item">
-                                <a href="" class="seventy">1970</a>
-                                <a href="" class="eighty">1980</a>
-                                <a href="" class="ninety">1990</a>
-                                <a href="" class="twenty">2000</a>
-                                <a href="" class="twentyten">2010</a>
-                                <a href="" class="twentytwenty">2020</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <a href="/user">yours</a>
-            </nav>
+        <div class="header__container container">
+            <div class="home__link__container">
+                <a href="/callback" class="header__home__link">
+                    <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
+                    <h1 class="header__title">Trackerfy</h1>
+                </a>
+            </div>
+
+            <div class="links__container">
+                <a href="/callback" class="spotify-link">Home</a> 
+                <a href="/tracks" class="spotify-link">Tracks</a>
+                <a href="/artists" class="spotify-link">Artists</a>
+                <a href="/genres" class="spotify-link">Genres</a>
+                <a href="/years" class="spotify-link">Top Hits in Years</a>
+            </div>
         </div>
     </header>
-    <main class="presentation">
-        <h2>The top 20 songs most played today are</h2>
-        <h3>This part of the page will have the top 20 songs listed according to the number of plays that year.</h3>
+
+    <main class="presentation__container container">
+        <div class="select__container">
+            <label for="select_time">Choose a time range:</label>
+            <select name="select_time" id="time">
+                <option value="short_term">short</option>
+                <option value="medium_term">medium</option>
+                <option value="long_term">long</option>
+            </select>
+            <button class="select__button">
+                get tracks
+            </button>
+        </div>
+        <div class="tracks">
+
+        </div>
     </main>
-    <footer class="footer">
-        <p>Trackerfy</p>
+
+    <footer class="footer__section section">
+        <div class="footer__content__container container">
+            <div class="footer__about">
+                <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
+                <div class="footer__about__text">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Tenetur delectus odio temporibus officiis nihil unde
+                </div>
+            </div>
+            <div class="footer__contact">
+                <h3>Contact</h3>
+                <a href="https://github.com/FernandoMMattos/spotifytracker" class="footer__contact__link">
+                    <i class="uil uil-github-alt"></i>
+                </a>
+            </div>
+        </div>
+        <div>Copyright <i class="fa-regular fa-copyright"></i> 2023 Trackerfy | All Rights Reserved </div>
     </footer>
 </body>
 
