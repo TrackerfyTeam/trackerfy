@@ -92,3 +92,7 @@ body {
 .footer p {
     padding: 24px;
 }
+
+@media(max-width: 1200px){
+
+}
