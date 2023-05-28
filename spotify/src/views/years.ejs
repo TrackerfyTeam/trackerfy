@@ -23,7 +23,7 @@
             </div>
 
             <div class="links__container">
-                <a href="/callback" class="spotify-link">Home</a> 
+                <a href="/callback" class="spotify-link">Home</a>
                 <a href="/tracks" class="spotify-link">Tracks</a>
                 <a href="/artists" class="spotify-link">Artists</a>
                 <a href="/genres" class="spotify-link">Genres</a>
@@ -34,18 +34,20 @@
 
     <main class="presentation__container container">
         <div class="select__container">
-            <label for="select_time">Choose a time range:</label>
-            <select name="select_time" id="time">
-                <option value="short_term">short</option>
-                <option value="medium_term">medium</option>
-                <option value="long_term">long</option>
-            </select>
+            <input type="text" name="categoria" pattern="\d" class="select__input" placeholder="Type a year"
+                onfocus="dropdown(0)" onblur="dropdown(1)">
             <button class="select__button">
                 Select Year
             </button>
+            <div class="dropDown">
+                <div class="listDropDown">
+                    <div class="item" id="item1" onmousedown="category(1)">1970</div>
+                    <div class="item" id="item2" onmousedown="category(2)">1975</div>
+                </div>
+            </div>
         </div>
         <div class="tracks">
-            
+
         </div>
     </main>
 
@@ -67,6 +69,8 @@
         </div>
         <div>Copyright <i class="fa-regular fa-copyright"></i> 2023 Trackerfy | All Rights Reserved </div>
     </footer>
+
+    <script src="/js/years.js"></script>
 </body>
 
 </html>
