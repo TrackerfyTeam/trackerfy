@@ -15,6 +15,7 @@
     --subtitle-color: #9c9c9c;
     --text-color: #fff;
     --font-montserrat: 'Montserrat', sans-serif;
+    --scroll-color: #aaaaaa;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
 
 .header {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;

@@ -28,7 +28,7 @@ router.get('/genres', (req, res) => {
 })
 
 router.get('/years', async (req, res) => {
-    res.render('topYears');
+    res.render('years');
 });
 
 router.get('/api/home', async (req, res) => {
@@ -83,6 +83,61 @@ router.post('/api/artists', async (req, res) => {
     })
 
     res.json(userTracks);
+});
+
+router.post('/api/genres', async (req, res) => {
+    let n = 0;
+    const { time } = req.body;
+
+    const tracksUsuario = await spotifyApi.getTopArtistsUsuario(time);
+
+    const genresObj = {}
+
+    const arrayGenres = await tracksUsuario.map((obj) => {
+        // console.log(obj.genres);
+        return obj.genres
+    })
+
+    arrayGenres.map((array) => {
+        if (array.length > 0) {
+            array.forEach(element => {
+                if (element in genresObj) {
+                    genresObj[element] += 1;
+                } else {
+                    genresObj[element] = 1;
+                }
+            });
+        }
+    })
+
+    res.json(genresObj);
+});
+
+router.post('/api/years', async (req, res) => {
+    let n = 0;
+
+    const { year } = req.body;
+
+    await spotifyApi.getToken(code);
+    const playlistId = await db.getPlaylistByYear(year);
+    const playlist = await spotifyApi.getPlaylistById(playlistId);
+    const playlistTracksArray = playlist.tracks.items;
+
+    const playlistTracks = await playlistTracksArray.map((obj) => {
+        let imageURL = obj.track.album.images[0].url
+        let trackName = obj.track.name;
+        let artistName = obj.track.artists[0].name;
+        n++
+        return [imageURL, trackName, artistName, n];
+    });
+
+    res.json(playlistTracks);
+});
+
+router.get('/api/playlists', async (req, res) => {
+    const playlists = await db.getPlaylists();
+
+    res.json(playlists)
 });
 
 module.exports = router;

@@ -1,0 +1,10 @@
+.chart__container{
+    width: 45vw;
+
+}
+.presentation__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
