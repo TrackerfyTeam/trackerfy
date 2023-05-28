@@ -136,8 +136,7 @@ router.post('/api/years', async (req, res) => {
 
 router.get('/api/playlists', async (req, res) => {
     const playlists = await db.getPlaylists();
-
-    res.json(playlists)
+    res.json(playlists);
 });
 
 module.exports = router;

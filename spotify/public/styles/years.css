@@ -1,7 +1,25 @@
 .select__container {
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-height: 400px;
+    height: fit-content;
+    padding: 2rem;
+    justify-content: flex-start;
+}
+
+/* .select__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+} */
+
+.select__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -28,12 +46,12 @@
 }
 
 .dropDown {
-    width: 250px;
+    width: 300px;
     background-color: var(--container-background-color);
     border-radius: 5px;
     margin-top: 10px;
     border: .5px solid var(--primary-color);
-    height: 160px;
+    height: 200px;
     overflow: auto;
     display: none;
     transition: .5s;

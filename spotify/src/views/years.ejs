@@ -34,15 +34,18 @@
 
     <main class="presentation__container container">
         <div class="select__container">
-            <input type="text" name="categoria" pattern="\d" class="select__input" placeholder="Type a year"
-                onfocus="dropdown(0)" onblur="dropdown(1)">
-            <button class="select__button">
-                Select Year
-            </button>
-            <div class="dropDown">
-                <div class="listDropDown">
-                    <div class="item" id="item1" onmousedown="category(1)">1970</div>
-                    <div class="item" id="item2" onmousedown="category(2)">1975</div>
+            <div class="select__box">
+                <input type="text" name="categoria" pattern="\d" class="select__input" placeholder="Type a year"
+                    onfocus="dropdown(0)" onblur="dropdown(1)">
+                <button class="select__button">
+                    Select Year
+                </button>
+            </div>
+            <div class="select__box">
+                <div class="dropDown">
+                    <div class="listDropDown">
+    
+                    </div>
                 </div>
             </div>
         </div>
