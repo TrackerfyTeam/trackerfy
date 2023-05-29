@@ -271,8 +271,8 @@ body {
     color: #1DB954;
     border: none;
     border-radius: 4px;
-    padding: 4px 9px;
-    font-size: 16px;
+    /* padding: 4px 9px;
+    font-size: 16px; */
     width: 150px;
 }
 
@@ -321,4 +321,93 @@ body {
 .spotify-link:hover {
     background-color: #1DB954;
     color: #fff;
+}
+@media(max-width: 1200px){
+    .header {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        padding: 2rem 0;
+    }
+    .links__container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+    }
+    .spotify-link{
+        padding: 3px 3px;
+        font-weight: bold;
+        font-size: 16px;
+        height: fit-content;
+    }
+    .presentation__container{
+        display: flex;
+        flex-direction: column;
+        padding: 10%;
+        align-items: center;
+    }
+    .select__container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    .item__container{
+        border-bottom: 2px solid white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:10%;
+        gap: 30px;
+        font-size: 30px;
+    }
+    .item__image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .item__container img{
+        margin: 0px;
+        width: 70%;
+    }
+
+    /* .headerhome {
+        display: flex;
+        gap: rem;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .headerimg {
+        width: 10%;
+    }
+
+    .headermenu {
+        display: flex;
+        gap: 5rem;
+    }
+
+    .headertitle {
+        color: var(--primary-color);
+        font-size: 2rem;
+    }
+
+    .headertext {
+        color: var(--primary-color);
+        justify-content: center;
+    }
+
+    .headermenu a {
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        font-size: 1.5rem;
+    } */
 }

@@ -20,4 +20,24 @@
 .artists__image img {
     height: 350px;
 }
+@media(max-width: 1200px){
+    .artists__image img {
+        height: 250px;
+    }
+    .artists__container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 2rem;
+    }
+}
+@media(max-width: 968px){
+    .artists__image img {
+        height: 250px;
+    }
+    .artists__container{
+        display: flex;
+        flex-direction: column;
+        column-gap: 2rem;
+    }
+}
 
