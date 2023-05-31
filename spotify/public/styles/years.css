@@ -2,18 +2,15 @@
     /* display: grid;
     grid-template-columns: repeat(2, 1fr); */
     display: flex;
-    flex-direction: column;
     min-height: 400px;
     height: fit-content;
-    padding: 2rem;
-    justify-content: flex-start;
+    /* padding: 2rem; */
+    /* justify-content: center; */
 }
 
 .select__box {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    /* justify-content: center; */
 }
 
 .select__container input {
@@ -39,7 +36,7 @@
 }
 
 .dropDown {
-    width: 300px;
+    width: 250px;
     background-color: var(--container-background-color);
     border-radius: 5px;
     margin-top: 10px;
