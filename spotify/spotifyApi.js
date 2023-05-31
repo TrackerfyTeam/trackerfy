@@ -10,19 +10,17 @@ let refresh_token;
 let expires_in;
 let tokenExpirado = false;
 
-async function getToken(code) {
+async function getToken(code, redirect_uri) {
     let dbresponse = await db.getAccessToken(1);
 
     if (dbresponse) {
-        console.log("token already existed and was updated successfully");
         await db.updateData(access_token, expires_in, 1);
         
     } else {
-        console.log("token didn't exist and will be inserted");
         const body = {
             grant_type: "authorization_code",
             code: code,
-            redirect_uri: "http://localhost:3000/callback"
+            redirect_uri: redirect_uri
         }
         const response = await axios({
             method: "POST",
@@ -38,7 +36,6 @@ async function getToken(code) {
         expires_in = response.data.expires_in;
         
         await db.insertToken(access_token, expires_in, 1);
-        console.log("token was added successfully");
         
     }
 
@@ -69,8 +66,6 @@ async function refreshToken() {
 
     await db.updateData(access_token, expires_in, 1);
     tokenExpirado = false;
-
-    
 
     setTimeout(() => {
         tokenExpirado = true;
