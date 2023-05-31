@@ -2,6 +2,7 @@
     /* display: grid;
     grid-template-columns: repeat(2, 1fr); */
     display: flex;
+    flex-direction: column;
     min-height: 400px;
     height: fit-content;
     /* padding: 2rem; */
@@ -10,7 +11,7 @@
 
 .select__box {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 .select__container input {
@@ -34,6 +35,13 @@
 .select__container input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+.roberto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .dropDown {
     width: 250px;
