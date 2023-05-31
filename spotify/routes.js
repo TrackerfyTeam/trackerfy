@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const spotifyApi = require('./spotifyApi');
 const db = require('./database');
+const data = require('./data');
 
 let code;
 
@@ -15,8 +16,12 @@ router.get('/callback', async (req, res) => {
     res.render('home');
 });
 
-router.get('/tracks', (req, res) => {
-    res.render('tracks');
+router.get('/tracks', async (req, res) => {
+    if (!(await db.getAccessToken(1))) {
+        return res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/tracks`);
+    } else {
+        res.render('tracks');
+    }
 })
 
 router.get('/artists', (req, res) => {
@@ -53,6 +58,7 @@ router.get('/api/home', async (req, res) => {
 });
 
 router.post('/api/tracks', async (req, res) => {
+
     let n = 0;
     const { time } = req.body;
 

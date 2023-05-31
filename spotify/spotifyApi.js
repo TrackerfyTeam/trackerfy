@@ -16,6 +16,7 @@ async function getToken(code) {
     if (dbresponse) {
         console.log("token already existed and was updated successfully");
         await db.updateData(access_token, expires_in, 1);
+        
     } else {
         console.log("token didn't exist and will be inserted");
         const body = {
@@ -38,6 +39,7 @@ async function getToken(code) {
         
         await db.insertToken(access_token, expires_in, 1);
         console.log("token was added successfully");
+        
     }
 
     tokenExpirado = false
@@ -66,8 +68,10 @@ async function refreshToken() {
     expires_in = response.data.expires_in
 
     await db.updateData(access_token, expires_in, 1);
-
     tokenExpirado = false;
+
+    
+
     setTimeout(() => {
         tokenExpirado = true;
     }, expires_in)
