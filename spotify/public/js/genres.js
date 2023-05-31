@@ -1,23 +1,21 @@
 const selectButton = document.querySelector('.select__button');
 
 selectButton.addEventListener('click', (e) => {
-  fetch('/api/artists', {
+  fetch('/api/genres', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ 
-      time: selectTime.value
+      time: "long_term"
     })
   })
     .then(response => response.json())
     .then(data => {
-        tracks.innerHTML = '';
-        data.map((obj) => {
-          const item = createDiv(obj[0], obj[1], obj[2]);
-          tracks.appendChild(item);
-        })
-    });
+        // const ordem = Object.values(data).sort();
+        console.log(data);
+        // console.log(data);
+  });
 });
 
 fetch('/api/genres', {
@@ -32,8 +30,8 @@ fetch('/api/genres', {
   .then(response => response.json())
   .then(data => {
       // const ordem = Object.values(data).sort();
-      // console.log(Object.values(data).sort());
       console.log(data);
+      // console.log(data);
 });
 
 const ctx = document.getElementById('Chart.js');

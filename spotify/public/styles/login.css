@@ -94,5 +94,48 @@ body {
 }
 
 @media(max-width: 1200px){
+    .header {
+        padding: 2% 10% 2% 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .header__logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .header__img {
+    width: 10px;
+    }
+
+    .header__menu__name {
+        color: var(--primary-color);
+        font-family: var(--font-montserrat);
+    }
+    .button {
+        margin: 0px;
+        width: 60%;
+        padding: 5%;
+        border-radius: 16px;
+        background-color: var(--primary-color);
+        font-family: var(--font-montserrat);
+        border: 4px solid var(--primary-color);
+        font-size: auto;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        text-decoration: none;
+        color: var(--background-color);
+        text-align: center;
+    }
+    .presentation{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 13rem;
+    }
 }
