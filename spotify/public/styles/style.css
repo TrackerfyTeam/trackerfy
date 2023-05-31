@@ -377,6 +377,28 @@ body {
         margin: 0px;
         width: 70%;
     }
+    
+    /*Footer*/
+
+    .footer__content__container {
+        display: flex;
+        flex-direction: row;
+        gap: 0px;
+        margin-bottom: 2rem;
+    }
+    
+    .footer__about {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .footer__about__text {
+        display: flex;
+        text-align: justify;
+        justify-content: center;
+    }
+
 
     /* .headerhome {
         display: flex;
