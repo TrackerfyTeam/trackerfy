@@ -18,3 +18,27 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+@media(max-width: 1200px){
+
+    .footer__content__container {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        margin-bottom: 2rem;
+    }
+    
+    .footer__about {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer__about__text {
+        position: relative;
+        display: flex;
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
