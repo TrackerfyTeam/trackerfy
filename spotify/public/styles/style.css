@@ -382,21 +382,23 @@ body {
 
     .footer__content__container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 0px;
         margin-bottom: 2rem;
     }
     
     .footer__about {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
     }
 
     .footer__about__text {
+        position: relative;
         display: flex;
         text-align: justify;
-        justify-content: center;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
 
