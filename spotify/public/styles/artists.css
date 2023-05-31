@@ -1,0 +1,43 @@
+.artists__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 4rem;
+}
+
+.artists__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.artists__label {
+    display: flex;
+    gap: 1rem;
+}
+
+.artists__image img {
+    height: 350px;
+}
+@media(max-width: 1200px){
+    .artists__image img {
+        height: 250px;
+    }
+    .artists__container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 2rem;
+    }
+}
+@media(max-width: 968px){
+    .artists__image img {
+        height: 250px;
+    }
+    .artists__container{
+        display: flex;
+        flex-direction: column;
+        column-gap: 2rem;
+    }
+}
+

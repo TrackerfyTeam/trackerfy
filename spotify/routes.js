@@ -2,40 +2,56 @@ const express = require('express');
 const router = express.Router();
 const spotifyApi = require('./spotifyApi');
 const db = require('./database');
+const data = require('./data');
 
 let code;
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     res.render('login');
+    await db.deleteData(1);
 });
 
 router.get('/callback', async (req, res) => {
-    code = req.query.code;
-    res.render('home');
+    if (code == undefined) {
+        res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/callback`);
+        code = req.query.code;
+    } else {
+        res.render('home');
+    }
 });
 
-router.get('/tracks', (req, res) => {
-    res.render('tracks');
+router.get('/tracks', async (req, res) => {
+    if (code == undefined) {
+        res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/tracks`);
+        code = req.query.code;
+    } else {
+        res.render('tracks');
+    }
 })
 
 router.get('/artists', (req, res) => {
-    res.render('artists');
-})
-
-router.get('/genres', (req, res) => {
-    res.render('genres');
+    if (code == undefined) {
+        res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/artists`);
+        code = req.query.code;
+    } else {
+        res.render('artists');
+    }
 })
 
 router.get('/years', async (req, res) => {
-    res.render('topYears');
+    if (code == undefined) {
+        res.redirect(`https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/years`);
+        code = req.query.code;
+    } else {
+        res.render('years');
+    }
 });
 
 router.get('/api/home', async (req, res) => {
     
     let n = 0;
-    console.log('Fui requisitado callback');
 
-    await spotifyApi.getToken(code);
+    await spotifyApi.getToken(code, "http://localhost:3000/callback");
     const playlistId = await db.getPlaylistByYear(2022);
     const playlist = await spotifyApi.getPlaylistById(playlistId);
     const playlistTracksArray = playlist.tracks.items;
@@ -52,9 +68,11 @@ router.get('/api/home', async (req, res) => {
 });
 
 router.post('/api/tracks', async (req, res) => {
+
     let n = 0;
     const { time } = req.body;
 
+    await spotifyApi.getToken(code, "http://localhost:3000/tracks");
     const tracksUsuario = await spotifyApi.getTopTracksUsuario(time);
 
     const userTracks = await tracksUsuario.map((obj) => {
@@ -82,6 +100,32 @@ router.post('/api/artists', async (req, res) => {
     })
 
     res.json(userTracks);
+});
+
+router.post('/api/years', async (req, res) => {
+    let n = 0;
+
+    const { year } = req.body;
+
+    await spotifyApi.getToken(code);
+    const playlistId = await db.getPlaylistByYear(year);
+    const playlist = await spotifyApi.getPlaylistById(playlistId);
+    const playlistTracksArray = playlist.tracks.items;
+
+    const playlistTracks = await playlistTracksArray.map((obj) => {
+        let imageURL = obj.track.album.images[0].url
+        let trackName = obj.track.name;
+        let artistName = obj.track.artists[0].name;
+        n++
+        return [imageURL, trackName, artistName, n];
+    });
+
+    res.json(playlistTracks);
+});
+
+router.get('/api/playlists', async (req, res) => {
+    const playlists = await db.getPlaylists();
+    res.json(playlists);
 });
 
 module.exports = router;

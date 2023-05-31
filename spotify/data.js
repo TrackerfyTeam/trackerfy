@@ -1,5 +1,3 @@
-const button = document.querySelector('button');
-
 data = {
     clientID: '65b4e3c4153f4e99a2baa7ef3c474b14',
     scope: [
@@ -26,11 +24,4 @@ data = {
     redirect_uri: 'http://localhost:3000/callback'
 }
 
-function login() {
-    console.log('Botão clicado!');
-    location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=${data.redirect_uri}`
-}
-
-button.addEventListener('click', (e) => {
-    login();
-});
+module.exports = data;
