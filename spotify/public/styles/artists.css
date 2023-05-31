@@ -1,8 +1,14 @@
+.presentation__container{
+    padding-top: 30px;
+}
+
 .artists__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 2rem;
     row-gap: 4rem;
+    justify-content: center;
+    padding: 30px 0px 30px 0px;
 }
 
 .artists__card {
@@ -18,7 +24,7 @@
 }
 
 .artists__image img {
-    height: 350px;
+    height: 250px;
 }
 @media(max-width: 1200px){
     .artists__image img {
