@@ -31,7 +31,6 @@ const selectTime = document.getElementById('time');
 const selectButton = document.querySelector('.select__button');
 
 selectButton.addEventListener('click', (e) => {
-  console.log(selectTime.value);
   fetch('/api/tracks', {
     method: 'POST',
     headers: {
@@ -50,5 +49,23 @@ selectButton.addEventListener('click', (e) => {
         })
     });
 });
+
+fetch('/api/tracks', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ 
+    time: "short_term"
+  })
+})
+  .then(response => response.json())
+  .then(data => {
+      tracks.innerHTML = '';
+      data.map((obj) => {
+        const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
+        tracks.appendChild(item);
+      })
+  });
 
 

@@ -55,4 +55,11 @@ async function getPlaylistByYear(year) {
     return result[0][0].idlink
 }
 
-module.exports = {insertToken, getAccessToken, updateData, deleteData, getPlaylistByYear}
+async function getPlaylists() {
+    const conn = await connect();
+    const sql = 'SELECT idlink FROM idLink;'
+    const result = await conn.query(sql);
+    return result[0]; 
+}
+
+module.exports = {insertToken, getAccessToken, updateData, deleteData, getPlaylistByYear, getPlaylists}
