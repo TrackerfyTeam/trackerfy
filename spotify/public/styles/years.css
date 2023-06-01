@@ -2,7 +2,7 @@
     /* display: grid;
     grid-template-columns: repeat(2, 1fr); */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 400px;
     height: fit-content;
     /* padding: 2rem; */
@@ -11,6 +11,7 @@
 
 .select__box {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
