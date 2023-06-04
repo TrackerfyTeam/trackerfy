@@ -1,71 +1,43 @@
-function createDiv(imageURL, trackName, artistName, ranking) {
-    const div1 = document.createElement('div');
-    const div2 = document.createElement('div');
-    const div3 = document.createElement('div');
-    const div4 = document.createElement('div');
-    const div5 = document.createElement('div');
-    const img = document.createElement('img');
-    
-    div2.innerHTML = ranking;
-    div4.innerHTML = trackName;
-    div5.innerHTML = artistName;
-    img.setAttribute("src", imageURL);
-    
-    div1.classList.add("item__container");
-    div2.classList.add("item__number");
-    div3.classList.add("item__image");
-    div4.classList.add("item__track__name");
-    div5.classList.add("item__artist__name");
-    
-    div3.appendChild(img)
-    div1.appendChild(div2);
-    div1.appendChild(div3);
-    div1.appendChild(div4);
-    div1.appendChild(div5);
-
-    return div1;
-}
-
 const tracks = document.querySelector('.tracks');
 const selectTime = document.getElementById('time');
 const selectButton = document.querySelector('.select__button');
+const parsedURL = new URL(location.href);
+const params = new URLSearchParams(parsedURL.hash.substr(1));
+const redirect_uri = "http://localhost:3000/tracks";
+const tokenRequested = localStorage.getItem('token');
 
-selectButton.addEventListener('click', (e) => {
-  fetch('/api/tracks', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ 
-      time: selectTime.value
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
-        tracks.innerHTML = '';
+if (!tokenRequested) {
+  if (!params.has("access_token")) {
+    localStorage.removeItem('token');
+    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${redirect_uri}&show_dialog=true`;
+  } else {
+    const access_token = params.get("access_token");
+    if (access_token) {
+      localStorage.setItem('token', JSON.stringify({ access_token }));
+    }
+  }
+}
+
+selectButton.addEventListener('click', () => {
+    request("/api/tracks", "POST", {
+        access_token: JSON.parse(localStorage.getItem('token')).access_token,
+        time: selectTime.value
+      }, (data) => {
+        tracks.innerHTML = "";
         data.map((obj) => {
-          const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
-          tracks.appendChild(item);
-        })
-    });
-});
-
-fetch('/api/tracks', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ 
-    time: "short_term"
-  })
+          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+        });
+      });
 })
-  .then(response => response.json())
-  .then(data => {
-      tracks.innerHTML = '';
-      data.map((obj) => {
-        const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
-        tracks.appendChild(item);
-      })
+
+request("/api/tracks", "POST", {
+    access_token: JSON.parse(localStorage.getItem('token')).access_token,
+    time: "short_term"
+  }, (data) => {
+    tracks.innerHTML = "";
+    data.map((obj) => {
+      tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+    });
   });
 
 

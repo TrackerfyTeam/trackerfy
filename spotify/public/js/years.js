@@ -2,60 +2,28 @@ const input = document.querySelector('.select__input');
 const listDropDown = document.querySelector('.listDropDown');
 const selectButton = document.querySelector('.select__button');
 const tracks = document.querySelector('.tracks');
+const parsedURL = new URL(location.href);
+const params = new URLSearchParams(parsedURL.hash.substr(1));
+const redirect_uri = "http://localhost:3000/years";
+const tokenRequested = localStorage.getItem('token');
 
 async function getYearsFromDatabase() {
     await fetch('http://localhost:3000/api/playlists')
-  .then(response => response.json())
-  .then(data => {
-    let n = 1;
-    data.map((obj) => {
-        createItem(obj.ano);
-        n++;
-    })
-  })
-  .catch(error => {
-    // Trate os erros adequadamente
-    console.error('Erro:', error);
-  });
+        .then(response => response.json())
+        .then(data => {
+            let n = 1;
+            data.map((obj) => {
+                createItem(obj.ano);
+                n++;
+            })
+        })
+        .catch(error => {
+            // Trate os erros adequadamente
+            console.error('Erro:', error);
+        });
 }
 
 getYearsFromDatabase();
-
-function createDiv(imageURL, trackName, artistName, ranking) {
-    const div1 = document.createElement('div');
-    const div2 = document.createElement('div');
-    const div3 = document.createElement('div');
-    const div4 = document.createElement('div');
-    const div5 = document.createElement('div');
-    const img = document.createElement('img');
-
-    div2.innerHTML = ranking;
-    div4.innerHTML = trackName;
-    div5.innerHTML = artistName;
-    img.setAttribute("src", imageURL);
-
-    div1.classList.add("item__container");
-    div2.classList.add("item__number");
-    div3.classList.add("item__image");
-    div4.classList.add("item__track__name");
-    div5.classList.add("item__artist__name");
-
-    div3.appendChild(img)
-    div1.appendChild(div2);
-    div1.appendChild(div3);
-    div1.appendChild(div4);
-    div1.appendChild(div5);
-
-    return div1;
-}
-
-selectButton.addEventListener('click', () => {
-    if (input.value == '') {
-        alert('Select a valid year!')
-    } else {
-        getTracks(Number(input.value));
-    }
-})
 
 function createItem(value) {
     const div = document.createElement('div');
@@ -68,26 +36,6 @@ function createItem(value) {
     }
 
     listDropDown.appendChild(div);
-}
-
-async function getTracks(year) {
-    await fetch('/api/years', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            year: year
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            tracks.innerHTML = '';
-            data.map((obj) => {
-                const item = createDiv(obj[0], obj[1], obj[2], obj[3]);
-                tracks.appendChild(item);
-            })
-        });
 }
 
 function dropdown(p) {
@@ -128,4 +76,41 @@ function filterList() {
         }
     }
 }
+
+if (!tokenRequested) {
+  if (!params.has("access_token")) {
+    localStorage.removeItem('token');
+    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${redirect_uri}&show_dialog=true`;
+  } else {
+    const access_token = params.get("access_token");
+    if (access_token) {
+      localStorage.setItem('token', JSON.stringify({ access_token }));
+    }
+  }
+}
+
+selectButton.addEventListener('click', () => {
+    request("/api/years", "POST", {
+        access_token: JSON.parse(localStorage.getItem('token')).access_token,
+        year: input.value
+      }, (data) => {
+        tracks.innerHTML = "";
+        data.map((obj) => {
+          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+        });
+      });
+})
+
+request("/api/years", "POST", {
+    access_token: JSON.parse(localStorage.getItem('token')).access_token,
+    year: "2022"
+  }, (data) => {
+    tracks.innerHTML = "";
+    data.map((obj) => {
+      tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+    });
+  });
+
+
+
 

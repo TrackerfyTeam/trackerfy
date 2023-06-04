@@ -1,70 +1,44 @@
-function createDiv(imageURL, artistName, ranking) {
-    const div1 = document.createElement('div');
-    const div2 = document.createElement('div');
-    const div3 = document.createElement('div');
-    const label = document.createElement('label');
-    const div4 = document.createElement('div');
-    const img = document.createElement('img');
-    
-    div2.innerHTML = ranking + '.';
-    div4.innerHTML = artistName;
-    img.setAttribute("src", imageURL);
-    
-    div1.classList.add("artists__card");
-    label.classList.add("artists__label");
-
-    div2.classList.add("artists__number");
-    div3.classList.add("artists__image");
-    div4.classList.add("artist__name");
-    
-    div3.appendChild(img);
-    label.appendChild(div2);
-    label.appendChild(div4);
-
-    div1.appendChild(div3);
-    div1.appendChild(label);
-
-    return div1;
-}
-
 const tracks = document.querySelector('.artists__container');
 const selectTime = document.getElementById('time');
 const selectButton = document.querySelector('.select__button');
+const parsedURL = new URL(location.href);
+const params = new URLSearchParams(parsedURL.hash.substr(1));
+const redirect_uri = "http://localhost:3000/artists";
+const tokenRequested = localStorage.getItem('token');
 
-selectButton.addEventListener('click', (e) => {
-  fetch('/api/artists', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ 
-      time: selectTime.value
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
-        tracks.innerHTML = '';
+if (!tokenRequested) {
+  if (!params.has("access_token")) {
+    localStorage.removeItem('token');
+    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&response_type=token&redirect_uri=${redirect_uri}&show_dialog=true`;
+  } else {
+    const access_token = params.get("access_token");
+    if (access_token) {
+      console.log('SEGUNDO IF RODADO');
+      localStorage.setItem('token', JSON.stringify({ access_token }));
+    }
+  }
+}
+
+selectButton.addEventListener('click', () => {
+    request("/api/artists", "POST", {
+        access_token: JSON.parse(localStorage.getItem('token')).access_token,
+        time: selectTime.value
+      }, (data) => {
+        tracks.innerHTML = "";
         data.map((obj) => {
-          const item = createDiv(obj[0], obj[1], obj[2]);
-          tracks.appendChild(item);
-        })
-    });
-});
-
-fetch('/api/artists', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ 
-    time: "short_term"
-  })
+          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+        });
+      });
 })
-  .then(response => response.json())
-  .then(data => {
-      tracks.innerHTML = '';
-      data.map((obj) => {
-        const item = createDiv(obj[0], obj[1], obj[2]);
-        tracks.appendChild(item);
-      })
+
+request("/api/artists", "POST", {
+    access_token: JSON.parse(localStorage.getItem('token')).access_token,
+    time: "short_term"
+  }, (data) => {
+    tracks.innerHTML = "";
+    data.map((obj) => {
+      tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+    });
   });
+
+
