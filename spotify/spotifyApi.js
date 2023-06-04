@@ -1,94 +1,21 @@
 const axios = require('axios');
-const db = require('./database');
 
-require('dotenv').config();
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-
-let access_token;
-let refresh_token;
-let expires_in;
-let tokenExpirado = false;
-
-async function getToken(code, redirect_uri) {
-    let dbresponse = await db.getAccessToken(1);
-
-    if (dbresponse) {
-        await db.updateData(access_token, expires_in, 1);
-        
-    } else {
-        const body = {
-            grant_type: "authorization_code",
-            code: code,
-            redirect_uri: redirect_uri
-        }
-        const response = await axios({
-            method: "POST",
-            url: "https://accounts.spotify.com/api/token",
-            data: new URLSearchParams(Object.entries(body)).toString(),
-            headers: {
-                Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        })
-        access_token = response.data.access_token;
-        refresh_token = response.data.refresh_token;
-        expires_in = response.data.expires_in;
-        
-        await db.insertToken(access_token, expires_in, 1);
-        
-    }
-
-    tokenExpirado = false
-    setTimeout(() => {
-        tokenExpirado = true
-    }, expires_in)
-}
-
-async function refreshToken() {
-    const body = {
-        grant_type: "refresh_token",
-        refresh_token: refresh_token
-    }
-
-    const response = await axios({
-        method: "POST",
-        url: "https://accounts.spotify.com/api/token",
-        data: new URLSearchParams(Object.entries(body)).toString(),
-        headers: {
-            Authorization: `Basic ${btoa(client_id + ":" + client_secret)}`,
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    })
-    
-    access_token = response.data.access_token
-    expires_in = response.data.expires_in
-
-    await db.updateData(access_token, expires_in, 1);
-    tokenExpirado = false;
-
-    setTimeout(() => {
-        tokenExpirado = true;
-    }, expires_in)
-}
-
-async function getTopTracksUsuario(time) {
-    if(tokenExpirado) await refreshToken();
+async function getTopTracksUsuario(time, access_token) {
 
     const response = await axios({
         method: "GET",
-        url: `https://api.spotify.com/v1/me/top/tracks/?time_range=${time}&limit=50`,
+        url: `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${time}`,
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json, text/plain, */*",
             Authorization: `Bearer ${access_token}`
         }
     })
 
     return response.data.items;
+
 }
 
-async function getTopArtistsUsuario(time) {
-    if(tokenExpirado) await refreshToken();
+async function getTopArtistsUsuario(time, access_token) {
 
     const response = await axios({
         method: "GET",
@@ -102,8 +29,7 @@ async function getTopArtistsUsuario(time) {
     return response.data.items;
 }
 
-async function getPlaylistById(id) {
-    if(tokenExpirado) await refreshToken();
+async function getPlaylistById(id, access_token) {
 
     const response = await axios({
         method: "GET",
@@ -117,4 +43,4 @@ async function getPlaylistById(id) {
     return response.data;
 }
 
-module.exports = {getToken, refreshToken, getTopArtistsUsuario, getTopTracksUsuario, getPlaylistById}
+module.exports = { getTopArtistsUsuario, getTopTracksUsuario, getPlaylistById }

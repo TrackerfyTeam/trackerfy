@@ -52,7 +52,7 @@ async function getPlaylistByYear(year) {
     const conn = await connect();
     const sql = 'SELECT *FROM idLink where ano=?;'
     const result = await conn.query(sql, year);
-    return result[0][0].idlink
+    return result[0][0].idlink;
 }
 
 async function getPlaylists() {
