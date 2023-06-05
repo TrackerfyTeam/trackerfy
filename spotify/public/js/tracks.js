@@ -3,7 +3,7 @@ const selectTime = document.getElementById('time');
 const selectButton = document.querySelector('.select__button');
 const parsedURL = new URL(location.href);
 const params = new URLSearchParams(parsedURL.hash.substr(1));
-const redirect_uri = "http://localhost:3000/tracks";
+const redirect_uri = "https://trackerfydeploy.onrender.com/tracks";
 const token = localStorage.getItem('token');
 
 if (!token) {
@@ -29,7 +29,7 @@ if (!token) {
 }
 
 selectButton.addEventListener('click', () => {
-    request("/api/tracks", "POST", {
+    request("https://trackerfydeploy.onrender.com/api/tracks", "POST", {
         access_token: JSON.parse(localStorage.getItem('token')).access_token,
         time: selectTime.value
       }, (data) => {

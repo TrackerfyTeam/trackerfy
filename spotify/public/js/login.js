@@ -23,12 +23,12 @@ data = {
         'user-read-email',
         'user-read-private'
         ],
-    redirect_uri: 'http://localhost:3000/callback'
+    redirect_uri: 'https://trackerfydeploy.onrender.com/callback'
 }
 
 function login() {
     console.log('Botão clicado!');
-    location.href = `https://accounts.spotify.com/authorize?response_type=token&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=http://localhost:3000/callback`;
+    location.href = `https://accounts.spotify.com/authorize?response_type=token&client_id=${data.clientID}&scope=${data.scope}&redirect_uri=${data.redirect_uri}`;
 }
 
 button.addEventListener('click', (e) => {

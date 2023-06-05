@@ -3,7 +3,7 @@ const router = express.Router();
 const spotifyApi = require('./spotifyApi');
 const db = require('./database');
 
-router.get('https://trackerfydeploy.onrender.com/', async (req, res) => {
+router.get('/', async (req, res) => {
     res.render('login');
 });
 

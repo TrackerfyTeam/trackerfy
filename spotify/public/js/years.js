@@ -4,11 +4,11 @@ const selectButton = document.querySelector('.select__button');
 const tracks = document.querySelector('.tracks');
 const parsedURL = new URL(location.href);
 const params = new URLSearchParams(parsedURL.hash.substr(1));
-const redirect_uri = "http://localhost:3000/years";
+const redirect_uri = "https://trackerfydeploy.onrender.com/years";
 const token = localStorage.getItem('token');
 
 async function getYearsFromDatabase() {
-    await fetch('http://localhost:3000/api/playlists')
+    await fetch('https://trackerfydeploy.onrender.com/api/playlists')
         .then(response => response.json())
         .then(data => {
             let n = 1;
