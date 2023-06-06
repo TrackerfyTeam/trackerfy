@@ -43,3 +43,52 @@
 
     text-decoration: none;
 }
+
+.toggle__link__container{
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .header__container{
+        max-width: 70vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .toggle__link__container{
+        display: flex;
+    }
+    .links__container{
+        background-color: rgba(33, 33, 33, 0.82);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        padding: 40px 10px 40px 10px;
+        transition: 0.6s ease-in-out;
+        /* bottom: 2000px; pra fazer vir de cima*/
+        /* top: 2000px; pra fazer vir de baixo */
+        top: 150px;
+        left: 150%;
+        transform: translate(-50%);
+        height: 60%;
+        width: 50%;
+        justify-content: center;
+        align-items: center;        
+    }
+    .spotify-link{
+        text-align: center;
+        background-color: rgba(19, 19, 19, 0.23);
+        padding: 8px;
+        border-radius: 5px;
+        width: 160px;
+        border: none;
+    }
+
+    .toggle__link__container i{
+        font-size: 25px;
+        
+        color: white;
+    }
+    
+}
