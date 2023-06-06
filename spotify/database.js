@@ -21,33 +21,27 @@ async function connect() {
     return connection
 }
 
-async function insertToken(access_token, expires_in, id){
+async function createUserinfo(username, userCreatedTime, tracksData){
     const conn = await connect();
-    const sql = `INSERT INTO accesstokendb(access_token, expires_in, id) VALUES (?, ?, ?);`
-    const values = [access_token, expires_in, id];
-    return await conn.query(sql, values)
-}
-
-async function updateData(access_token, expires_in, id) {
-    const conn = await connect();
-    const sql = 'UPDATE accesstokendb SET access_token=?, expires_in=?, id=?'
-    const values = [access_token, expires_in, id];
+    const sql = `INSERT INTO userinfo(username, lastdate, musicinfo) VALUES (?, ?, ?);`
+    const values = [username, userCreatedTime, tracksData];
     return await conn.query(sql, values);
 }
 
-async function deleteData(id) {
+async function getUserInfo(username) {
     const conn = await connect();
-    const sql = 'DELETE FROM accesstokendb where id=?;'
-    return await conn.query(sql, id);
+    const sql = 'SELECT musicinfo FROM userinfo where username=?'
+    // return await conn.query(sql, values);
+    const result = await conn.query(sql, username)
+    return result[0][0].musicinfo;
+    console.log(result[0][0].musicinfo);
 }
-
-async function getAccessToken(id) {
+async function updateUserInfo(username, tracksData) {
     const conn = await connect();
-    const sql = 'SELECT *FROM accesstokendb where id=?;'
-    const result = await conn.query(sql, id);
-    return result[0][0] != undefined ? true : false; 
+    const sql = 'UPDATE userinfo SET musicinfo=? where username=?'
+    const values = [tracksData, username];
+    return await conn.query(sql, values);
 }
-
 async function getPlaylistByYear(year) {
     const conn = await connect();
     const sql = 'SELECT *FROM idLink where ano=?;'
@@ -62,4 +56,4 @@ async function getPlaylists() {
     return result[0]; 
 }
 
-module.exports = {insertToken, getAccessToken, updateData, deleteData, getPlaylistByYear, getPlaylists}
+module.exports = {getPlaylistByYear, getPlaylists, createUserinfo, getUserInfo}

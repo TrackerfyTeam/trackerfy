@@ -23,6 +23,10 @@ router.get('/years', async (req, res) => {
     res.render('years');
 });
 
+router.get('/genres', async (req, res) => {
+    res.render('genres');
+});
+
 router.post('/api/home', async (req, res) => {
     let n = 0;
     const { access_token } = req.body
@@ -87,5 +91,13 @@ router.get('/api/playlists', async (req, res) => {
     const playlists = await db.getPlaylists();
     res.json(playlists);
 });
+
+router.get('/api/user', async (req, res) => {
+    const userInfo = await db.getUserInfo("Ciucon");
+    res.send(userInfo);
+})
+router.post('/api/user', async (req, res) => {
+    
+})
 
 module.exports = router;

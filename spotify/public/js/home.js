@@ -1,7 +1,7 @@
 const main = document.querySelector('.presentation__container');
 const parsedURL = new URL(location.href);
 const params = new URLSearchParams(parsedURL.hash.substr(1));
-const redirect_uri = "https://trackerfydeploy.onrender.com/callback"
+const redirect_uri = "http://localhost:3000/callback"
 const token = localStorage.getItem('token');
 
 if (!token) {
@@ -26,7 +26,7 @@ if (!token) {
   }
 }
 
-request("https://trackerfydeploy.onrender.com/api/home", "POST", {
+request("/api/home", "POST", {
   access_token: JSON.parse(localStorage.getItem('token')).access_token,
 }, (data) => {
   data.map((obj) => {
