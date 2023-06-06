@@ -6,6 +6,30 @@ const params = new URLSearchParams(parsedURL.hash.substr(1));
 const redirect_uri = "https://trackerfydeploy.onrender.com/artists";
 const token = localStorage.getItem('token');
 
+function createDivArtists(imageURL, artistName, ranking) {
+  const div1 = document.createElement('div');
+  const div2 = document.createElement('div');
+  const div3 = document.createElement('div');
+  const div5 = document.createElement('div');
+  const img = document.createElement('img');
+
+  div2.innerHTML = ranking;
+  div5.innerHTML = artistName;
+  img.setAttribute("src", imageURL);
+
+  div1.classList.add("item__container");//div geral
+  div2.classList.add("item__number");//div dos numeros
+  div3.classList.add("item__image");//div das imagens
+  div5.classList.add("item__artist__name");//div do nome dos artistas
+
+  div3.appendChild(img)
+  div1.appendChild(div2);
+  div1.appendChild(div3);
+  div1.appendChild(div5);
+
+  return div1;
+}
+
 if (!token) {
   if (!params.has("access_token")) {
     localStorage.removeItem('token');
@@ -29,13 +53,14 @@ if (!token) {
 }
 
 selectButton.addEventListener('click', () => {
-    request("https://trackerfydeploy.onrender.com/api/artists", "POST", {
+    request("/api/artists", "POST", {
         access_token: JSON.parse(localStorage.getItem('token')).access_token,
         time: selectTime.value
       }, (data) => {
         tracks.innerHTML = "";
+        console.log(data);
         data.map((obj) => {
-          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+          tracks.appendChild(createDivArtists(obj[0], obj[1], obj[2]));
         });
       });
 })
@@ -46,7 +71,7 @@ request("/api/artists", "POST", {
   }, (data) => {
     tracks.innerHTML = "";
     data.map((obj) => {
-      tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
+      tracks.appendChild(createDivArtists(obj[0], obj[1], obj[2]));
     });
   });
 
