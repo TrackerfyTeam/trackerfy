@@ -30,18 +30,28 @@ async function createUserinfo(username, userCreatedTime, tracksData){
 
 async function getUserInfo(username) {
     const conn = await connect();
-    const sql = 'SELECT musicinfo FROM userinfo where username=?'
-    // return await conn.query(sql, values);
+    const sql = 'SELECT *FROM userinfo where username=?'
     const result = await conn.query(sql, username)
-    return result[0][0].musicinfo;
-    console.log(result[0][0].musicinfo);
+    return result[0][0];
 }
 async function updateUserInfo(username, tracksData) {
     const conn = await connect();
-    const sql = 'UPDATE userinfo SET musicinfo=? where username=?'
-    const values = [tracksData, username];
-    return await conn.query(sql, values);
+    const sql = `SELECT musicinfo FROM userinfo WHERE username = ?`;
+    const [results] = await conn.query(sql, username);
+    
+    let tracks = results[0].musicinfo;
+    
+    tracksData.map((obj) => {
+        tracks.push(obj)
+    })
+
+
+    const updateQuery = `UPDATE userinfo SET musicinfo = '${JSON.stringify(tracks)}' WHERE username = ?`;
+    const res = await conn.query(updateQuery, username);
+
 }
+
+
 async function getPlaylistByYear(year) {
     const conn = await connect();
     const sql = 'SELECT *FROM idLink where ano=?;'
@@ -56,4 +66,4 @@ async function getPlaylists() {
     return result[0]; 
 }
 
-module.exports = {getPlaylistByYear, getPlaylists, createUserinfo, getUserInfo}
+module.exports = {getPlaylistByYear, getPlaylists, createUserinfo, getUserInfo, updateUserInfo}

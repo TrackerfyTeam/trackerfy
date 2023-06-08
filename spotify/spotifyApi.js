@@ -43,4 +43,18 @@ async function getPlaylistById(id, access_token) {
     return response.data;
 }
 
-module.exports = { getTopArtistsUsuario, getTopTracksUsuario, getPlaylistById }
+async function getRecentlyPlayed(access_token) {
+
+    const response = await axios({
+        method: "GET",
+        url: `https://api.spotify.com/v1/me/player/recently-played`,
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`
+        }
+    })
+
+    return response.data.items;
+}
+
+module.exports = { getTopArtistsUsuario, getTopTracksUsuario, getPlaylistById, getRecentlyPlayed}

@@ -96,8 +96,17 @@ router.get('/api/user', async (req, res) => {
     const userInfo = await db.getUserInfo("Ciucon");
     res.send(userInfo);
 })
+
 router.post('/api/user', async (req, res) => {
+    const {data} = req.body
+    await db.updateUserInfo('Ciucon', data);
     
+})
+
+router.post('/api/genres', async (req, res) => {
+    const { access_token } = req.body;
+    const resposta = await spotifyApi.getRecentlyPlayed(access_token);
+    res.send(resposta);
 })
 
 module.exports = router;
