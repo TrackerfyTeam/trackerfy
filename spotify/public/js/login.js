@@ -26,9 +26,20 @@ const data = {
     redirect_uri: 'https://trackerfydeploy.onrender.com/callback'
 }
 
+const token = localStorage.getItem('token');
+
 function login() {
     console.log('Botão clicado!');
-    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${data.redirect_uri}&show_dialog=true`;
+    if (token) {
+        if (JSON.parse(localStorage.getItem('token')).timestamp <= Date.now()) {
+            localStorage.removeItem('token');
+            location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${data.redirect_uri}&show_dialog=true`;
+        } else {
+            location.href = "https://trackerfydeploy.onrender.com/callback";
+        }
+    } else {
+        location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${data.redirect_uri}&show_dialog=true`;
+    }
 }
 
 button.addEventListener('click', (e) => {
