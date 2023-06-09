@@ -92,7 +92,7 @@ body {
 .item__artist__name {
     display: flex;
     justify-content: flex-end;
-    text-align: center;
+    text-align: end;
 }
 
 .link__button {
