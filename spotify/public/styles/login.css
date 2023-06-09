@@ -259,7 +259,7 @@ html, body {
     }
 }
 
-@media(max-height: 600px){
+@media(max-height: 650px){
     .footer__about__text{
         display: flex;
         flex-direction: column;
