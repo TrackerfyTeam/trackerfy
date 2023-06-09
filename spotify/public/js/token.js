@@ -12,6 +12,7 @@ function createDiv(imageURL, trackName, artistName, ranking) {
   img.setAttribute("src", imageURL);
 
   div1.classList.add("item__container");//div geral
+  div1.setAttribute("data-aos","zoom-in");
   div2.classList.add("item__number");//div dos numeros
   div3.classList.add("item__image");//div das imagens
   div4.classList.add("item__track__name");//div do nome das tracks
@@ -67,11 +68,5 @@ async function request(route, method, body, func) {
       console.error('Erro:', error);
     });
 }
-
-const logoutButton = document.querySelector('.logout');
-logoutButton.addEventListener('click', () => {
-  localStorage.removeItem('token');
-  location.href = 'https://trackerfydeploy.onrender.com/';
-})
 
 

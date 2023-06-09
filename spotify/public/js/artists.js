@@ -18,6 +18,7 @@ function createDivArtists(imageURL, artistName, ranking) {
   img.setAttribute("src", imageURL);
 
   div1.classList.add("item__container");//div geral
+  div1.setAttribute("data-aos","zoom-in");
   div2.classList.add("item__number");//div dos numeros
   div3.classList.add("item__image");//div das imagens
   div5.classList.add("item__artist__name");//div do nome dos artistas
