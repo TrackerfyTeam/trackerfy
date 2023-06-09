@@ -12,6 +12,7 @@
 }
 
 .item__container__recently-tracks .item__image img{
+    margin-left: 2rem;
     width: 70px;
     border-radius: 15px;
 }
