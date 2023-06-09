@@ -11,6 +11,11 @@
     justify-content: center;
 }
 
+.item__container__recently-tracks .item__image img{
+    width: 70px;
+    border-radius: 15px;
+}
+
 .item__container__recently-tracks .item__artist__name {
     display: flex;
     justify-content: center;
