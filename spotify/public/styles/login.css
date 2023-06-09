@@ -188,7 +188,7 @@ html, body {
 }
 
 
-@media (max-width: 1400px){
+@media (max-width: 1400px) and (max-height: 1200px){
     .footer__section {
         display: flex;
         flex-direction: column;
@@ -252,6 +252,14 @@ html, body {
 }
 
 @media(max-height: 750px){
+    .footer__about__text{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+@media(max-height: 600px){
     .footer__about__text{
         display: flex;
         flex-direction: row;
