@@ -1,6 +1,6 @@
 const button = document.querySelector('button');
 
-data = {
+const data = {
     clientID: '65b4e3c4153f4e99a2baa7ef3c474b14',
     scope: [
         'ugc-image-upload',
