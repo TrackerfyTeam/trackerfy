@@ -3,8 +3,8 @@ const selectTime = document.getElementById('time');
 const selectButton = document.querySelector('.select__button');
 const parsedURL = new URL(location.href);
 const params = new URLSearchParams(parsedURL.hash.substr(1));
-const redirect_uri = "https://trackerfydeploy.onrender.com/artists";
 const token = localStorage.getItem('token');
+const redirect_uri = "https://trackerfydeploy.onrender.com/artists";
 
 function createDivArtists(imageURL, artistName, ranking) {
   const div1 = document.createElement('div');
