@@ -226,6 +226,10 @@ body {
         font-size: 30px;
     }
 
+    .item__artist__name{
+        text-align: center;
+    }
+
     .item__track__name{
         text-align: center;
     }
