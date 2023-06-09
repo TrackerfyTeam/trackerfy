@@ -28,7 +28,7 @@ data = {
 
 function login() {
     console.log('Botão clicado!');
-    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${redirect_uri}&show_dialog=true`;
+    location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${data.redirect_uri}&show_dialog=true`;
 }
 
 button.addEventListener('click', (e) => {
