@@ -39,8 +39,8 @@ selectButton.addEventListener('click', () => {
       data.map((obj) => {
         const item = `
           <div class="item__container__recently-tracks" data-aos="zoom-in">
-            <div class="item__image">
-              <div class="item__number">${obj[3]}</div>
+          <div class="item__image">
+            <div class="item__number">${obj[3]}</div>
                 <img src="${obj[0]}" alt="">
             </div>
             <div class="item__track__name">${obj[1]}</div>

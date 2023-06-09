@@ -26,3 +26,35 @@
     display: flex;
     justify-content: flex-end;
 }
+
+@media (max-width: 1000px){
+
+    .presentation__container{
+        display: flex;
+        flex-direction: column;
+        padding: 10%;
+    }
+    
+    .item__container__recently-tracks {
+        border-bottom: 2px solid white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:10%;
+        gap: 30px;
+        font-size: 30px;
+    }
+    
+    .item__image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .item__container__recently-tracks .item__image img{
+        margin: 0px;
+        width: 70%;
+    }
+    
+}

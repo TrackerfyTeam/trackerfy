@@ -251,3 +251,12 @@ html, body {
     }
 }
 
+@media(max-height: 750px){
+    .footer__about__text{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+

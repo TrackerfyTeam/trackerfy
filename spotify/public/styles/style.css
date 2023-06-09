@@ -196,6 +196,8 @@ body {
 .select__button:active {
     transform: scale(0.95);
 }
+
+
 @media(max-width: 1200px){
     .presentation__container{
         display: flex;
@@ -220,6 +222,10 @@ body {
         padding:10%;
         gap: 30px;
         font-size: 30px;
+    }
+
+    .item__track__name{
+        text-align: center;
     }
     .item__image{
         display: flex;
