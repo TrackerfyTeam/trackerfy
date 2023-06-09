@@ -86,11 +86,13 @@ body {
 .item__track__name {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .item__artist__name {
     display: flex;
     justify-content: flex-end;
+    text-align: center;
 }
 
 .link__button {
