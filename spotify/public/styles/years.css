@@ -74,3 +74,11 @@
     padding-left: 7px;
     transition: .3s;
 }
+
+@media(max-width: 900px){
+    .select__container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+}

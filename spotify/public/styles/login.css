@@ -7,50 +7,65 @@
 
 :root {
     --primary-color: #1DB954;
-    --secondary-color: white;
+    --primary-darker: #17883e;
     --background-color: black;
-
+    --secondary-color: #121212;
+    --container-background-color: #222222;
+    --subtitle-color: #9c9c9c;
+    --text-color: #fff;
     --font-montserrat: 'Montserrat', sans-serif;
+    --scroll-color: #aaaaaa;
 }
 
-.header {
-    padding: 2% 10% 2% 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header__logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-}
-
-.header__img {
-    width: 10%;
-}
-
-.header__menu__name {
-    color: var(--primary-color);
-    font-family: var(--font-montserrat);
-}
-
-body {
-    background-color: var(--background-color);
+html, body {
+    margin: 0;
+    height: 100vh;
     box-sizing: border-box;
+    overflow: hidden;
+    background-image: url("../assets/gifBackground.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
-.presentation {
-    color: var(--primary-color);
+
+.header{
+    padding-top: 10rem;
     font-family: var(--font-montserrat);
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+}
+
+.presentation{
+    height: 100vh;
+}
+
+.button__div{
+    padding-top: 5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    color: var(--primary-color);
+    font-family: var(--font-montserrat);
+    padding-bottom: 13.5rem;
+}
+
+.button__div h2{
     text-align: center;
-    gap: 5rem;
+}
+
+.header h1{
+    font-size: 80px;
+    animation: starWars 2.5s;
+}
+
+.presentation{
+    animation: shading-presentation 2s;
+}
+
+.footer__section{
+    animation: shading-footer 4s;
 }
 
 .button {
@@ -61,7 +76,7 @@ body {
     background-color: var(--primary-color);
     font-family: var(--font-montserrat);
     border: 4px solid var(--primary-color);
-    font-size: large;
+    font-size: 23px;
     cursor: pointer;
     transition: .3s ease-in-out;
     text-decoration: none;
@@ -71,56 +86,168 @@ body {
 
 .button:hover {
     margin-top: 5%;
-    background-color: var(--background-color);
-    border: 4px solid var(--primary-color);
-    color: var(--secondary-color)
+    background-color: var(--secondary-color);
+    border: 4px solid var(--secondary-color);
+    color: var(--primary-color)
 }
 
 
+.footer__section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    color: var(--text-color);
+    text-align: center;
+    justify-content: center;
+    font-family: var(--font-montserrat);
+    padding: 3rem 0 2rem;
+}
 
-@media(max-width: 1200px){
-    .header {
-        padding: 2% 10% 2% 10%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.footer__about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .header__logos {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-    }
+.footer__about__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.4rem 0 2rem 0;
+}
 
-    .header__img {
-    width: 10px;
-    }
+.footer__about__text a{
+    text-decoration: none;
+    color: rgb(181, 181, 181);
+    font-family: var(--font-montserrat);
+    transition: .1s ease-in-out;
+}
 
-    .header__menu__name {
-        color: var(--primary-color);
-        font-family: var(--font-montserrat);
+.footer__about__text a:hover{
+    color: var(--primary-color);
+}
+
+.footer__contact{
+    font-size: small;
+    color: var(--subtitle-color);
+    margin-bottom: 10px;
+    font-family: var(--font-montserrat);
+}
+
+.footer__contact__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: var(--font-montserrat);
+}
+
+.footer__contact__link i {
+    cursor: pointer;
+}
+
+@keyframes starWars{
+    0%{
+        font-size: 300px;
     }
-    .button {
-        margin: 0px;
-        width: 60%;
-        padding: 5%;
-        border-radius: 16px;
-        background-color: var(--primary-color);
-        font-family: var(--font-montserrat);
-        border: 4px solid var(--primary-color);
-        font-size: auto;
-        cursor: pointer;
-        transition: .3s ease-in-out;
-        text-decoration: none;
-        color: var(--background-color);
-        text-align: center;
+    50%{
+        font-size: 300px;
     }
-    .presentation{
+    100%{
+        font-size: 80px;
+    }
+}
+
+@keyframes shading-presentation{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes shading-footer{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 1400px){
+    .footer__section {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        bottom: 0;
+        width: 100%;
+        color: var(--text-color);
+        text-align: center;
         justify-content: center;
-        gap: 13rem;
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+    .footer__content__container {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        margin-bottom: 0rem;
+    }
+    
+    .footer__about__text {
+        position: relative;
+        display: flex;
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+    
+    }
+    .footer__copyright{
+        padding: 0 2rem 0 2rem;
+    }
+
+    @keyframes starWars{
+        0%{
+            font-size: 18vw;
+            margin-top: 280px;
+        }
+        50%{
+            font-size: 18vw;
+            margin-top: 280px;
+        }
+        100%{
+            font-size: 12vw;
+            margin-top: 0;
+        }
+    }
+    .header{
+        padding-top: 4rem;
+        font-family: var(--font-montserrat);
+        color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+    }
+
+    .header h1{
+        font-size: 12vw;
+        animation: starWars 2.5s;
+    }
+
+    .button{
+        width: 50vw;
     }
 }
+

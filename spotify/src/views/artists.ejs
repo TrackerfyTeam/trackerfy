@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../../public/styles/style.css"> -->
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/artists.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Trackerfy</title>
 </head>
 
@@ -20,21 +20,17 @@
         <div class="header__container container">
             <div class="home__link__container">
                 <a href="/callback" class="header__home__link">
-                    <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
                     <h1 class="header__title">Trackerfy</h1>
                 </a>
             </div>
             <div class="toggle__link__container" id="toggleLink">
                 <i class="fa-solid fa-bars" id="navtog"></i>
-                
-                <!-- <i class="fa-solid fa-xmark"></i> -->
             </div>
             <div class="links__container">
                 <a href="/callback" class="spotify-link">Home</a> 
                 <a href="/years" class="spotify-link">Top Hits in Years</a>
                 <a href="/tracks" class="spotify-link">Tracks</a>
                 <a href="/artists" class="spotify-link">Artists</a>
-                <a href="/genres" class="spotify-link">Genres</a>
                 <button class="logout spotify-link">Logout</button>
             </div>
         </div>
@@ -44,9 +40,9 @@
         <div class="select__container">
             <label for="select_time">Choose a time range:</label>
             <select name="select_time" id="time">
-                <option value="short_term">short</option>
-                <option value="medium_term">medium</option>
-                <option value="long_term">long</option>
+                <option value="short_term">1 month</option>
+                <option value="medium_term">6 months</option>
+                <option value="long_term">all time</option>
             </select>
             <button class="select__button">
                 get tracks
@@ -78,6 +74,11 @@
     <script src="/js/token.js"></script>
     <script src="/js/artists.js"></script>
     <script src="/js/navbar.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../../public/styles/style.css"> -->
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/home.css">
     <script src="https://kit.fontawesome.com/5531950668.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Trackerfy</title>
@@ -19,28 +19,60 @@
         <div class="header__container container">
             <div class="home__link__container">
                 <a href="/callback" class="header__home__link">
-                    <i class="fa-brands fa-spotify fa-2xl" style="color: #1db954;"></i>
                     <h1 class="header__title">Trackerfy</h1>
                 </a>
             </div>
             <div class="toggle__link__container" id="toggleLink">
                 <i class="fa-solid fa-bars" id="navtog"></i>
-                
-                <!-- <i class="fa-solid fa-xmark"></i> -->
             </div>
             <div class="links__container">
-                <a href="/callback" class="spotify-link">Home</a> 
-                <a href="/years" class="spotify-link">Top Hits in Years</a>
-                <a href="/tracks" class="spotify-link">Tracks</a>
-                <a href="/artists" class="spotify-link">Artists</a>
-                <a href="/genres" class="spotify-link">Genres</a>
                 <button class="logout spotify-link">Logout</button>
             </div>
         </div>
     </header>
-
     <main class="presentation__container container">
-
+        <div class="explanation">
+            <div class="pages__div">
+                <i class="fa-solid fa-clock"></i>
+                <div class="caption">
+                    <h2>Top hits in years</h2>
+                    <p>The most listened tracks in a specific year since 1970.</p>
+                </div>
+                <div class="pages__button">
+                    <a href="/years" class=""><i class="uil uil-angle-right"></i> </a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="explanation2">
+            <div class="pages__div">
+                <i class="fa-solid fa-forward-fast"></i>
+                <div class="caption">
+                    <h2>Your top tracks</h2>
+                    <p>Your top 50 tracks in 3 different time ranges.</p>
+                </div>
+                <div class="pages__button">
+                    <a href="/tracks" class="">
+                        <i class="uil uil-angle-right"></i>
+                    </a>    
+                </div>
+            </div>
+        </div>
+            <div class="explanation3">
+                <div class="pages__div">
+                    <i class="fa-solid fa-user-large"></i>
+                    <div class="caption">
+                        <h2>Your top artists</h2>
+                        <p>See who are your top 50 most listened artist in 3 different time ranges.</p>
+                    </div>
+                    <div class="pages__button">
+                        <a href="/artists" class="">
+                            <i class="uil uil-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>   
+                
     </main>
 
     <footer class="footer__section section">
@@ -61,9 +93,9 @@
         <div>Copyright <i class="fa-regular fa-copyright"></i> 2023 Trackerfy | All Rights Reserved </div>
     </footer>
 
-    <script src="/js/token.js"></script>
-    <script src="/js/home.js"></script>
+    <script src="/js/logout.js"></script>
     <script src="/js/navbar.js"></script>
+    <script src="/js/buttonHover.js"></script>
 </body>
 
 </html>

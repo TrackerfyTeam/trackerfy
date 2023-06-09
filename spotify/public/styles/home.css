@@ -1,0 +1,85 @@
+.explanation i{
+    display: inline;
+    justify-content: flex-start;
+    font-size: 70px;
+}
+
+.explanation2 i{
+    display: inline;
+    justify-content: flex-start;
+    font-size: 70px;
+}
+
+.explanation3 i{
+    display: inline;
+    justify-content: flex-start;
+    font-size: 70px;
+}
+.presentation__container{
+    margin-top:15rem ;
+}
+.explanation{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    padding: 3rem;
+    animation: slide 0.5s;
+}
+
+.explanation2{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    padding: 3rem;
+    animation: slide 1s;
+}
+
+.explanation3{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    padding: 3rem;
+    animation: slide 1.5s;
+}
+
+.pages__button{
+    display: flex;
+    align-items: center;
+}
+
+.pages__button a{
+    text-decoration: none;
+    color: white;
+}
+
+.pages__div{
+    display: flex;
+    align-items: flex-start;
+    gap: 5rem;
+}
+
+.caption{
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    justify-content: space-between;
+}
+
+.caption p{
+    color: var(--subtitle-color);
+}
+
+@keyframes slide{
+    0%{
+        right: 1000rem;
+    }
+    100%{
+        right: 0;
+    }
+}
