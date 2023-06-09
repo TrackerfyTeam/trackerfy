@@ -201,7 +201,7 @@ body {
         display: flex;
         flex-direction: column;
         padding: 10%;
-        align-items: center;
+
     }
     .select__container {
         display: flex;

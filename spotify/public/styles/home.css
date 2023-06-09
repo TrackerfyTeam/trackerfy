@@ -58,10 +58,15 @@
     color: white;
 }
 
+.pages__icon__text{
+    align-items: center;
+    display: flex;
+}
+
 .pages__div{
     display: flex;
-    align-items: flex-start;
-    gap: 5rem;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .caption{
@@ -69,10 +74,41 @@
     flex-direction: column;
     height: 70px;
     justify-content: space-between;
+    padding-left: 4rem;
 }
 
 .caption p{
     color: var(--subtitle-color);
+}
+
+@media (max-width: 1200px){
+    .presentation__container{
+        gap: 5rem;
+        padding: 1rem;
+    }
+
+    .pages__div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
+    .explanation{
+        padding: 0;
+    }
+
+    .explanation2{
+        padding: 0;
+    }
+
+    .explanation3{
+        padding: 0;
+    }
+
+    .pages__div {
+        font-size: small;
+    }
 }
 
 @keyframes slide{
