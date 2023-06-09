@@ -1,0 +1,22 @@
+.item__container__recently-tracks {
+    display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+    margin-bottom: 1rem;
+    width: 100%;
+    align-items: center;
+}
+
+.item__container__recently-tracks .item__number {
+    display: flex;
+    justify-content: center;
+}
+
+.item__container__recently-tracks .item__artist__name {
+    display: flex;
+    justify-content: center;
+}
+
+.item__container__recently-tracks .item__time {
+    display: flex;
+    justify-content: flex-end;
+}

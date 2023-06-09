@@ -38,16 +38,18 @@ async function updateUserInfo(username, tracksData) {
     const conn = await connect();
     const sql = `SELECT musicinfo FROM userinfo WHERE username = ?`;
     const [results] = await conn.query(sql, username);
-    
     let tracks = results[0].musicinfo;
     
-    tracksData.map((obj) => {
-        tracks.push(obj)
-    })
+    console.log(tracksData[0].track);
 
+    // tracksData.map((obj) => {
+    //     console.log(obj.track.name);
+    //     console.log(obj.track);
+    // })
+    
 
-    const updateQuery = `UPDATE userinfo SET musicinfo = '${JSON.stringify(tracks)}' WHERE username = ?`;
-    const res = await conn.query(updateQuery, username);
+    // const updateQuery = `UPDATE userinfo SET musicinfo = '${JSON.stringify(tracks)}' WHERE username = ?`;
+    // await conn.query(updateQuery, username);
 
 }
 

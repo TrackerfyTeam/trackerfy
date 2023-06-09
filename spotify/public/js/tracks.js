@@ -21,7 +21,6 @@ if (!token) {
     }
   }
 } else {
-  console.log(Date.now());
   if (JSON.parse(localStorage.getItem('token')).timestamp <= Date.now()) {
     localStorage.removeItem('token');
     location.href = `https://accounts.spotify.com/pt-BR/authorize/?client_id=${data.clientID}&scope=${data.scope}&response_type=token&redirect_uri=${redirect_uri}&show_dialog=true`;
@@ -29,25 +28,50 @@ if (!token) {
 }
 
 selectButton.addEventListener('click', () => {
-    request("https://trackerfydeploy.onrender.com/api/tracks", "POST", {
-        access_token: JSON.parse(localStorage.getItem('token')).access_token,
-        time: selectTime.value
-      }, (data) => {
-        tracks.innerHTML = "";
-        data.map((obj) => {
-          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
-        });
+
+  if (selectTime.value == "recently") {
+    console.log('Valor é recently');
+    request("/api/tracks", "POST", {
+      access_token: JSON.parse(localStorage.getItem('token')).access_token,
+      time: selectTime.value
+    }, (data) => {
+      tracks.innerHTML = "";
+      data.map((obj) => {
+        const item = `
+          <div class="item__container__recently-tracks">
+            <div class="item__image">
+              <div class="item__number">${obj[3]}</div>
+                <img src="${obj[0]}" alt="">
+            </div>
+            <div class="item__track__name">${obj[1]}</div>
+            <div class="item__artist__name">${obj[2]}</div>
+            <div class="item__time">${obj[4]}</div>
+          </div>
+          `
+        tracks.innerHTML += item
+      })
+    });
+  } else {
+    request("/api/tracks", "POST", {
+      access_token: JSON.parse(localStorage.getItem('token')).access_token,
+      time: selectTime.value
+    }, (data) => {
+      tracks.innerHTML = "";
+      data.map((obj) => {
+        tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
       });
+    });
+  }
 })
 
 request("/api/tracks", "POST", {
-    access_token: JSON.parse(localStorage.getItem('token')).access_token,
-    time: "short_term"
-  }, (data) => {
-    tracks.innerHTML = "";
-    data.map((obj) => {
-      tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
-    });
+  access_token: JSON.parse(localStorage.getItem('token')).access_token,
+  time: "short_term"
+}, (data) => {
+  tracks.innerHTML = "";
+  data.map((obj) => {
+    tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
   });
+});
 
 

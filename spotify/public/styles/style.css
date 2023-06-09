@@ -54,10 +54,10 @@ body {
     align-items: center;
 }
 
-.item__container img {
+.item__container img, .item__container__recently-tracks img{
     margin-left: 2rem;
     width: 70px;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 .item__track__name {

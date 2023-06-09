@@ -23,10 +23,6 @@ router.get('/years', async (req, res) => {
     res.render('years');
 });
 
-router.get('/genres', async (req, res) => {
-    res.render('genres');
-});
-
 router.post('/api/home', async (req, res) => {
     let n = 0;
     const { access_token } = req.body
@@ -44,18 +40,44 @@ router.post('/api/home', async (req, res) => {
 });
 
 router.post('/api/tracks', async (req, res) => {
-
     const { access_token, time } = req.body;
-    let n = 0;
-    const tracksUsuario = await spotifyApi.getTopTracksUsuario(time, access_token);
-    const userTrack = await tracksUsuario.map((obj) => {
-        let imageURL = obj.album.images[0].url
-        let trackName = obj.name;
-        let artistName = obj.artists[0].name;
-        n++
-        return [imageURL, trackName, artistName, n];
-    })
-    res.json(userTrack);
+    if (time == "recently") {
+        function transformDate(value) {
+            return value.toString().length == 2 ? value : `0${value}`
+        }
+        let n = 0;
+        const spotifyResponse = await spotifyApi.getRecentlyPlayed(access_token);
+        const recentlyPlayed = spotifyResponse.map((obj) => {
+            const dateTime = new Date(obj.played_at);
+            const day = transformDate(dateTime.getDate());
+            const month = transformDate(dateTime.getMonth());
+            const year = dateTime.getFullYear();
+            const hour = transformDate(dateTime.getHours());
+            const minute = transformDate(dateTime.getMinutes());
+
+            const imageURL = obj.track.album.images[0].url
+            const trackName = obj.track.name;
+            const artistsName = obj.track.artists[0].name;
+            const date = `${day} / ${month} / ${year} - ${hour}:${minute}`;
+            n++
+
+            return [imageURL, trackName, artistsName, n, date];
+        })
+
+        res.json(recentlyPlayed);
+    } else {
+        console.log(time);
+        let n = 0;
+        const tracksUsuario = await spotifyApi.getTopTracksUsuario(time, access_token);
+        const userTrack = await tracksUsuario.map((obj) => {
+            let imageURL = obj.album.images[0].url
+            let trackName = obj.name;
+            let artistName = obj.artists[0].name;
+            n++
+            return [imageURL, trackName, artistName, n];
+        })
+        res.json(userTrack);
+    }
 });
 
 router.post('/api/artists', async (req, res) => {
@@ -91,22 +113,5 @@ router.get('/api/playlists', async (req, res) => {
     const playlists = await db.getPlaylists();
     res.json(playlists);
 });
-
-router.get('/api/user', async (req, res) => {
-    const userInfo = await db.getUserInfo("Ciucon");
-    res.send(userInfo);
-})
-
-router.post('/api/user', async (req, res) => {
-    const {data} = req.body
-    await db.updateUserInfo('Ciucon', data);
-    
-})
-
-router.post('/api/genres', async (req, res) => {
-    const { access_token } = req.body;
-    const resposta = await spotifyApi.getRecentlyPlayed(access_token);
-    res.send(resposta);
-})
 
 module.exports = router;
