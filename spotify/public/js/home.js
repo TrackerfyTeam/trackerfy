@@ -1,5 +1,8 @@
 const token = localStorage.getItem('token');
 
+const parsedURL = new URL(location.href);
+const params = new URLSearchParams(parsedURL.hash.substr(1));
+
 if (!token) {
   const access_token = params.get("access_token");
     if (access_token) {
