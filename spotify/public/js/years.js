@@ -99,7 +99,10 @@ if (!token) {
   }
 }
 
-selectButton.addEventListener('click', () => {
+if(input.value < 1970 || input.value > 2022){
+  alert("Insira um ano válido!");
+}else{
+  selectButton.addEventListener('click', () => {
     request("/api/years", "POST", {
         access_token: JSON.parse(localStorage.getItem('token')).access_token,
         year: input.value
@@ -110,6 +113,7 @@ selectButton.addEventListener('click', () => {
         });
       });
 })
+}
 
 request("/api/years", "POST", {
     access_token: JSON.parse(localStorage.getItem('token')).access_token,
