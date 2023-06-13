@@ -99,21 +99,24 @@ if (!token) {
   }
 }
 
-if(input.value < 1970 || input.value > 2022){
-  alert("Insira um ano válido!");
-}else{
-  selectButton.addEventListener('click', () => {
+
+
+selectButton.addEventListener('click', () => {
+  if(input.value < 1970 || input.value > 2022){
+    alert("Insira um ano válido!");
+  }else{
     request("/api/years", "POST", {
-        access_token: JSON.parse(localStorage.getItem('token')).access_token,
-        year: input.value
-      }, (data) => {
-        tracks.innerHTML = "";
-        data.map((obj) => {
-          tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
-        });
+      access_token: JSON.parse(localStorage.getItem('token')).access_token,
+      year: input.value
+    }, (data) => {
+      tracks.innerHTML = "";
+      data.map((obj) => {
+        tracks.appendChild(createDiv(obj[0], obj[1], obj[2], obj[3]));
       });
+    });
+  }
+  
 })
-}
 
 request("/api/years", "POST", {
     access_token: JSON.parse(localStorage.getItem('token')).access_token,
