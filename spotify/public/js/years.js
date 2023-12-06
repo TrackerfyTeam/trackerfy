@@ -8,22 +8,23 @@ const redirect_uri = "https://trackerfydeploy.onrender.com/years";
 const token = localStorage.getItem('token');
 
 async function getYearsFromDatabase() {
-    await fetch('https://trackerfydeploy.onrender.com/api/playlists')
-        .then(response => response.json())
-        .then(data => {
-            let n = 1;
-            data.map((obj) => {
-                createItem(obj.ano);
-                n++;
-            })
-        })
-        .catch(error => {
-            // Trate os erros adequadamente
-            console.error('Erro:', error);
-        });
+  await fetch('https://trackerfydeploy.onrender.com/api/playlists')
+      .then(response => response.json())
+      .then(data => {
+          let n = 1;
+          data.map((obj) => {
+              createItem(obj.ano);
+              n++;
+          })
+      })
+      .catch(error => {
+          // Trate os erros adequadamente
+          console.error('Erro:', error);
+      });
 }
-
 getYearsFromDatabase();
+
+
 
 function createItem(value) {
     const div = document.createElement('div');
@@ -99,10 +100,8 @@ if (!token) {
   }
 }
 
-
-
 selectButton.addEventListener('click', () => {
-  if(input.value < 1970 || input.value > 2022){
+  if(input.value < 1970 || input.value > 2023){
     alert("Insira um ano válido!");
   }else{
     request("/api/years", "POST", {

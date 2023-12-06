@@ -20,6 +20,7 @@ router.get('/artists', (req, res) => {
 })
 
 router.get('/years', async (req, res) => {
+    console.log('teste')
     res.render('years');
 });
 
@@ -98,6 +99,7 @@ router.post('/api/years', async (req, res) => {
     const { access_token, year } = req.body;
     const playlistId = await db.getPlaylistByYear(year);
     const playlist = await spotifyApi.getPlaylistById(playlistId, access_token);
+    console.log(playlistId)
     const playlistTracksArray = playlist.tracks.items;
     const playlistTracks = await playlistTracksArray.map((obj) => {
         let imageURL = obj.track.album.images[0].url
@@ -111,6 +113,8 @@ router.post('/api/years', async (req, res) => {
 
 router.get('/api/playlists', async (req, res) => {
     const playlists = await db.getPlaylists();
+    console.log(playlists)
+    console.log(typeof playlists)
     res.json(playlists);
 });
 

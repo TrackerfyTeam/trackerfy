@@ -26,6 +26,8 @@ const data = {
     redirect_uri: 'https://trackerfydeploy.onrender.com/callback'
 }
 
+// https://trackerfydeploy.onrender.com/callback
+
 const token = localStorage.getItem('token');
 
 function login() {
